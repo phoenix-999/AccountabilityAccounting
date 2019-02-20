@@ -5,12 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
 using System.IdentityModel.Tokens;
-using System.ServiceModel;
 
 namespace AuthenticationService
 {
     [ServiceContract]
-    interface IAuthentication
+    public interface IAuthentication
     {
         [OperationContract]
         [FaultContract(typeof(SecurityTokenException))]

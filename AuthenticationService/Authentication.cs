@@ -10,7 +10,7 @@ using System.ServiceModel;
 namespace AuthenticationService
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
-    class Authentication : IAuthentication
+    public class Authentication : IAuthentication
     {
         public User Authenticate(string userName, string password)
         {

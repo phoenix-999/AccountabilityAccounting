@@ -7,14 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AccountabilityAccounting.AuthenticationService;
 
 namespace AccountabilityAccounting
 {
-    public partial class Form1 : Form
+    public partial class AuthenticationForm : Form
     {
-        public Form1()
+        public AuthenticationForm()
         {
             InitializeComponent();
+        }
+
+        private void btnCancelAuthentication_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnEnterApp_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

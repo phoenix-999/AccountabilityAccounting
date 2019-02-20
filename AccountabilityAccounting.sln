@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountabilityAccounting", "AccountabilityAccounting\AccountabilityAccounting.csproj", "{765FE85C-A4B6-475B-B525-B499567461B8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D82C0715-91C6-43ED-8319-B28DD4E0E2A4} = {D82C0715-91C6-43ED-8319-B28DD4E0E2A4}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthenticationService", "AuthenticationService\AuthenticationService.csproj", "{D82C0715-91C6-43ED-8319-B28DD4E0E2A4}"
 EndProject
