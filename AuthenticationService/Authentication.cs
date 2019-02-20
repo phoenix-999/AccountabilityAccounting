@@ -23,5 +23,6 @@ namespace AuthenticationService
                 throw new FaultException<SecurityTokenException>(new SecurityTokenException("Unknown Username or Password"));
             }
         }
+
     }
 }
