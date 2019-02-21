@@ -74,8 +74,51 @@ namespace AccountabilityAccounting.AuthenticationService {
         }
     }
     
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="AuthenticationService.IAuthentication")]
+    public interface IAuthentication {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/Authenticate", ReplyAction="http://tempuri.org/IAuthentication/AuthenticateResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.IdentityModel.Tokens.SecurityTokenException), Action="http://tempuri.org/IAuthentication/AuthenticateSecurityTokenExceptionFault", Name="SecurityTokenException", Namespace="http://schemas.datacontract.org/2004/07/System.IdentityModel.Tokens")]
+        AccountabilityAccounting.AuthenticationService.User Authenticate(string userName, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/Authenticate", ReplyAction="http://tempuri.org/IAuthentication/AuthenticateResponse")]
+        System.Threading.Tasks.Task<AccountabilityAccounting.AuthenticationService.User> AuthenticateAsync(string userName, string password);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IAuthenticationChannel : AccountabilityAccounting.AuthenticationService.IAuthentication, System.ServiceModel.IClientChannel {
+    }
+    
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    public class SecurityTokenException {
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class AuthenticationClient : System.ServiceModel.ClientBase<AccountabilityAccounting.AuthenticationService.IAuthentication>, AccountabilityAccounting.AuthenticationService.IAuthentication {
+        
+        public AuthenticationClient() {
+        }
+        
+        public AuthenticationClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public AuthenticationClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public AuthenticationClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public AuthenticationClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public AccountabilityAccounting.AuthenticationService.User Authenticate(string userName, string password) {
+            return base.Channel.Authenticate(userName, password);
+        }
+        
+        public System.Threading.Tasks.Task<AccountabilityAccounting.AuthenticationService.User> AuthenticateAsync(string userName, string password) {
+            return base.Channel.AuthenticateAsync(userName, password);
+        }
     }
 }

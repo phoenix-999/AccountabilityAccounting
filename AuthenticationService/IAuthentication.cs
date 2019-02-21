@@ -12,6 +12,7 @@ namespace AuthenticationService
     public interface IAuthentication
     {
         [OperationContract]
+        //В клиенте необходимо добавлять все ссылки на сборки пространствоимен которых используется, иначе котракт службы не импортируется, вместо него будет создан клас исключения в существующем простарнве имен. Можно поробавать указать полное имя исключения в контракте службы.
         [FaultContract(typeof(SecurityTokenException))]
         User Authenticate(string userName, string password);
     }

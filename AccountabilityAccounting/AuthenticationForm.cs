@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AccountabilityAccounting.AuthenticationService;
+using System.IdentityModel.Tokens;
+using System.ServiceModel;
 
 namespace AccountabilityAccounting
 {
@@ -25,7 +27,19 @@ namespace AccountabilityAccounting
 
         private void btnEnterApp_Click(object sender, EventArgs e)
         {
-            
+            AuthenticationClient authencticationClient = new AuthenticationClient();
+            try
+            {
+                User user = authencticationClient.Authenticate(tbLogin.Text, tbPassword.Text);
+                //Данные сохраняются в статическом свойстве только для чтения
+                new UserData(user);
+            }
+            catch (FaultException<SecurityTokenException> ex)
+            {
+                MessageBox.Show("Вход не выполнен. Проверте логин и пароль.");
+                Application.Exit();
+                
+            }
         }
     }
 }

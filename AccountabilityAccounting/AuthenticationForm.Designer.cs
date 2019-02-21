@@ -31,7 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tbLogin = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbPassword = new System.Windows.Forms.TextBox();
             this.btnEnterApp = new System.Windows.Forms.Button();
             this.btnCancelAuthentication = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -64,14 +64,14 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Пароль";
             // 
-            // textBox1
+            // tbPassword
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.Location = new System.Drawing.Point(89, 134);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(183, 26);
-            this.textBox1.TabIndex = 3;
-            this.textBox1.UseSystemPasswordChar = true;
+            this.tbPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbPassword.Location = new System.Drawing.Point(89, 134);
+            this.tbPassword.Name = "tbPassword";
+            this.tbPassword.Size = new System.Drawing.Size(183, 26);
+            this.tbPassword.TabIndex = 3;
+            this.tbPassword.UseSystemPasswordChar = true;
             // 
             // btnEnterApp
             // 
@@ -100,7 +100,7 @@
             this.ClientSize = new System.Drawing.Size(284, 262);
             this.Controls.Add(this.btnCancelAuthentication);
             this.Controls.Add(this.btnEnterApp);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tbPassword);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tbLogin);
             this.Controls.Add(this.label1);
@@ -118,7 +118,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbLogin;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbPassword;
         private System.Windows.Forms.Button btnEnterApp;
         private System.Windows.Forms.Button btnCancelAuthentication;
     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b9c16205-6c34-4902-b875-c5c1c8f4123e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="54ca83b8-5472-4da6-8434-352c6c08e811" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,12 +22,12 @@
     <MetadataSource Address="http://localhost/Authentication/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="29f49a36-a549-4174-a895-819dc1572425" SourceId="1" SourceUrl="http://localhost/Authentication/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="12455c29-e85a-43b9-9c2b-f685a248fe89" SourceId="1" SourceUrl="http://localhost/Authentication/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="9b867364-ba8a-43ad-a023-21678b1e62ca" SourceId="1" SourceUrl="http://localhost/Authentication/mex" />
-    <MetadataFile FileName="AuthenticationService.xsd" MetadataType="Schema" ID="cc383e2c-4ec4-489a-b259-39c03b63f704" SourceId="1" SourceUrl="http://localhost/Authentication/mex" />
-    <MetadataFile FileName="System.IdentityModel.Tokens.xsd" MetadataType="Schema" ID="bc2a6d0b-6f2a-492f-af68-43827b19cd77" SourceId="1" SourceUrl="http://localhost/Authentication/mex" />
-    <MetadataFile FileName="System.xsd" MetadataType="Schema" ID="c09a939f-7706-4ec7-bb19-66c32bf093db" SourceId="1" SourceUrl="http://localhost/Authentication/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="79ebec90-00ef-481c-8ed0-cdda45df39c0" SourceId="1" SourceUrl="http://localhost/Authentication/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="27aff051-44a2-41b2-93af-ce2c395ac7ce" SourceId="1" SourceUrl="http://localhost/Authentication/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="dd0cba03-e9d2-4c74-8a35-4c4c5c784eb8" SourceId="1" SourceUrl="http://localhost/Authentication/mex" />
+    <MetadataFile FileName="AuthenticationService.xsd" MetadataType="Schema" ID="bd164f64-cc5c-4d5c-9c39-87573bf46ebe" SourceId="1" SourceUrl="http://localhost/Authentication/mex" />
+    <MetadataFile FileName="System.IdentityModel.Tokens.xsd" MetadataType="Schema" ID="ed50894f-88fd-4ae8-9613-5ccec3cc7b94" SourceId="1" SourceUrl="http://localhost/Authentication/mex" />
+    <MetadataFile FileName="System.xsd" MetadataType="Schema" ID="05ca8989-b6d1-43d4-b6cf-c0e1dff8c499" SourceId="1" SourceUrl="http://localhost/Authentication/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -7,7 +7,7 @@ using AccountabilityAccounting.AuthenticationService;
 
 namespace AccountabilityAccounting
 {
-    class UserData
+    class  UserData
     {
         public static AuthenticationService.User User { get; private set; }
         
