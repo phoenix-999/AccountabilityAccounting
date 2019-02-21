@@ -31,8 +31,7 @@ namespace AccountabilityAccounting
             try
             {
                 User user = authencticationClient.Authenticate(tbLogin.Text, tbPassword.Text);
-                //Данные сохраняются в статическом свойстве только для чтения
-                new UserData(user);
+                User.Current = user;
             }
             catch (FaultException<SecurityTokenException> ex)
             {
