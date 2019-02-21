@@ -35,7 +35,7 @@ namespace AccountabilityAccounting
             }
             catch (FaultException<SecurityTokenException> ex)
             {
-                MessageBox.Show("Вход не выполнен. Проверте логин и пароль.");
+                MessageBox.Show("Вход не выполнен. Проверте логин и пароль.", "Ошибка входа", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
                 
             }
