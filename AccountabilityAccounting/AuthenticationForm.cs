@@ -33,7 +33,10 @@ namespace AccountabilityAccounting
                 User user = authencticationClient.Authenticate(tbLogin.Text, tbPassword.Text);
                 //Запоминает пользователя в partial классе. Изменение пользователя в ходе выполнения теоретически не возможно по условиям setter свойства.
                 User.Current = user;
-                MessageBox.Show(user.UserId.ToString());
+
+                new MainForm().Show();
+                this.Hide();
+                
             }
             catch (FaultException<SecurityTokenException> ex)
             {
