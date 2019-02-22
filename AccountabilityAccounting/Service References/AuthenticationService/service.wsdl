@@ -167,7 +167,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="NetTcpBinding_IAuthentication_Authenticate_ExceptionFault_Fault">
+  <wsp:Policy wsu:Id="NetTcpBinding_IAuthentication_Authenticate_DbExceptionFault_Fault">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -193,9 +193,9 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.IdentityModel.Tokens" />
-      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System" />
-      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/AuthenticationService" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IAuthentication_Authenticate_InputMessage">
@@ -207,15 +207,15 @@
   <wsdl:message name="IAuthentication_Authenticate_SecurityTokenExceptionFault_FaultMessage">
     <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/System.IdentityModel.Tokens" name="detail" element="q1:SecurityTokenException" />
   </wsdl:message>
-  <wsdl:message name="IAuthentication_Authenticate_ExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/System" name="detail" element="q2:Exception" />
+  <wsdl:message name="IAuthentication_Authenticate_DbExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/AuthenticationService" name="detail" element="q2:DbException" />
   </wsdl:message>
   <wsdl:portType name="IAuthentication">
     <wsdl:operation name="Authenticate">
       <wsdl:input wsaw:Action="http://tempuri.org/IAuthentication/Authenticate" message="tns:IAuthentication_Authenticate_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAuthentication/AuthenticateResponse" message="tns:IAuthentication_Authenticate_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IAuthentication/AuthenticateSecurityTokenExceptionFault" name="SecurityTokenExceptionFault" message="tns:IAuthentication_Authenticate_SecurityTokenExceptionFault_FaultMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IAuthentication/AuthenticateExceptionFault" name="ExceptionFault" message="tns:IAuthentication_Authenticate_ExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAuthentication/AuthenticateDbExceptionFault" name="DbExceptionFault" message="tns:IAuthentication_Authenticate_DbExceptionFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IAuthentication" type="tns:IAuthentication">
@@ -235,9 +235,9 @@
         <wsp:PolicyReference URI="#NetTcpBinding_IAuthentication_Authenticate_SecurityTokenExceptionFault_Fault" />
         <soap12:fault use="literal" name="SecurityTokenExceptionFault" namespace="" />
       </wsdl:fault>
-      <wsdl:fault name="ExceptionFault">
-        <wsp:PolicyReference URI="#NetTcpBinding_IAuthentication_Authenticate_ExceptionFault_Fault" />
-        <soap12:fault use="literal" name="ExceptionFault" namespace="" />
+      <wsdl:fault name="DbExceptionFault">
+        <wsp:PolicyReference URI="#NetTcpBinding_IAuthentication_Authenticate_DbExceptionFault_Fault" />
+        <soap12:fault use="literal" name="DbExceptionFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>

@@ -74,13 +74,58 @@ namespace AccountabilityAccounting.AuthenticationService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/AuthenticationService")]
+    [System.SerializableAttribute()]
+    public partial class DbException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DetailField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Detail {
+            get {
+                return this.DetailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DetailField, value) != true)) {
+                    this.DetailField = value;
+                    this.RaisePropertyChanged("Detail");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="AuthenticationService.IAuthentication")]
     public interface IAuthentication {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/Authenticate", ReplyAction="http://tempuri.org/IAuthentication/AuthenticateResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(System.IdentityModel.Tokens.SecurityTokenException), Action="http://tempuri.org/IAuthentication/AuthenticateSecurityTokenExceptionFault", Name="SecurityTokenException", Namespace="http://schemas.datacontract.org/2004/07/System.IdentityModel.Tokens")]
-        [System.ServiceModel.FaultContractAttribute(typeof(System.Exception), Action="http://tempuri.org/IAuthentication/AuthenticateExceptionFault", Name="Exception", Namespace="http://schemas.datacontract.org/2004/07/System")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountabilityAccounting.AuthenticationService.DbException), Action="http://tempuri.org/IAuthentication/AuthenticateDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/AuthenticationService")]
         AccountabilityAccounting.AuthenticationService.User Authenticate(string userName, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/Authenticate", ReplyAction="http://tempuri.org/IAuthentication/AuthenticateResponse")]

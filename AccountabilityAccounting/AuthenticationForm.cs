@@ -41,6 +41,13 @@ namespace AccountabilityAccounting
                 Application.Exit();
                 
             }
+            catch (FaultException<DbException> ex)
+            {
+                MessageBox.Show(ex.Detail.Detail, "Ошибка входа", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+
+            }
+
         }
     }
 }

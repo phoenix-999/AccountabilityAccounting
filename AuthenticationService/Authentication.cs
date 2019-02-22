@@ -34,6 +34,7 @@ namespace AuthenticationService
 
         private bool CheckUser(string login, string password, out User user)
         {
+            user = null;
             DataTable table = new DataTable();
             int? userId;
             string userName;
@@ -46,15 +47,14 @@ namespace AuthenticationService
                 table = auth.GetUserAccountabilityAccounting(login, password);
                 DataRow row = table.Rows[0];
 
-                userId = row["IdUser"] as int?;
+                userId = row["IdUser"] as int?; //исправить IdUser
                 userName = row["UserName"] as string;
                 newUser = new User(userId, userName);
                 user = newUser;                
             }
-            catch(Exception)
+            catch(Exception ex)
             {
-                user = null;
-                return false;
+                throw new FaultException<DbException>(new DbException(ex));
             }
             if (user != null && user.UserId != null) return true;
             else return false;

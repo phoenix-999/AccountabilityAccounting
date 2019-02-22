@@ -7,4 +7,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="User" nillable="true" type="tns:User" />
+  <xs:complexType name="DbException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Detail" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DbException" nillable="true" type="tns:DbException" />
 </xs:schema>
