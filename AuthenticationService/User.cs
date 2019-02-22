@@ -12,10 +12,10 @@ namespace AuthenticationService
     public class User
     {
         [DataMember]
-        public int UserId { get; private set; }
+        public int? UserId { get; private set; }
         [DataMember]
         public string UserName { get; private set; }
-        public User(int userId, string userName)
+        public User(int? userId, string userName)
         {
             this.UserId = userId;
             this.UserName = userName;

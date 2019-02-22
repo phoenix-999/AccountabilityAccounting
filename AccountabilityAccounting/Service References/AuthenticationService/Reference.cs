@@ -23,7 +23,7 @@ namespace AccountabilityAccounting.AuthenticationService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int UserIdField;
+        private System.Nullable<int> UserIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string UserNameField;
@@ -39,7 +39,7 @@ namespace AccountabilityAccounting.AuthenticationService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int UserId {
+        public System.Nullable<int> UserId {
             get {
                 return this.UserIdField;
             }
@@ -80,6 +80,7 @@ namespace AccountabilityAccounting.AuthenticationService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/Authenticate", ReplyAction="http://tempuri.org/IAuthentication/AuthenticateResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(System.IdentityModel.Tokens.SecurityTokenException), Action="http://tempuri.org/IAuthentication/AuthenticateSecurityTokenExceptionFault", Name="SecurityTokenException", Namespace="http://schemas.datacontract.org/2004/07/System.IdentityModel.Tokens")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.Exception), Action="http://tempuri.org/IAuthentication/AuthenticateExceptionFault", Name="Exception", Namespace="http://schemas.datacontract.org/2004/07/System")]
         AccountabilityAccounting.AuthenticationService.User Authenticate(string userName, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/Authenticate", ReplyAction="http://tempuri.org/IAuthentication/AuthenticateResponse")]

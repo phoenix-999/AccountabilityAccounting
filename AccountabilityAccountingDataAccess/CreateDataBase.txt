@@ -1,0 +1,164 @@
+﻿USE [master]
+GO
+
+/****** Object:  Database [AccountabilityAccounting]    Script Date: 22.02.2019 14:24:32 ******/
+CREATE DATABASE [AccountabilityAccounting]
+ 
+GO
+
+ALTER DATABASE [AccountabilityAccounting] SET COMPATIBILITY_LEVEL = 120
+GO
+
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [AccountabilityAccounting].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+
+ALTER DATABASE [AccountabilityAccounting] SET ANSI_NULL_DEFAULT OFF 
+GO
+
+ALTER DATABASE [AccountabilityAccounting] SET ANSI_NULLS OFF 
+GO
+
+ALTER DATABASE [AccountabilityAccounting] SET ANSI_PADDING OFF 
+GO
+
+ALTER DATABASE [AccountabilityAccounting] SET ANSI_WARNINGS OFF 
+GO
+
+ALTER DATABASE [AccountabilityAccounting] SET ARITHABORT OFF 
+GO
+
+ALTER DATABASE [AccountabilityAccounting] SET AUTO_CLOSE OFF 
+GO
+
+ALTER DATABASE [AccountabilityAccounting] SET AUTO_SHRINK OFF 
+GO
+
+ALTER DATABASE [AccountabilityAccounting] SET AUTO_UPDATE_STATISTICS ON 
+GO
+
+ALTER DATABASE [AccountabilityAccounting] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+
+ALTER DATABASE [AccountabilityAccounting] SET CURSOR_DEFAULT  GLOBAL 
+GO
+
+ALTER DATABASE [AccountabilityAccounting] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+
+ALTER DATABASE [AccountabilityAccounting] SET NUMERIC_ROUNDABORT OFF 
+GO
+
+ALTER DATABASE [AccountabilityAccounting] SET QUOTED_IDENTIFIER OFF 
+GO
+
+ALTER DATABASE [AccountabilityAccounting] SET RECURSIVE_TRIGGERS OFF 
+GO
+
+ALTER DATABASE [AccountabilityAccounting] SET  DISABLE_BROKER 
+GO
+
+ALTER DATABASE [AccountabilityAccounting] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+
+ALTER DATABASE [AccountabilityAccounting] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+
+ALTER DATABASE [AccountabilityAccounting] SET TRUSTWORTHY OFF 
+GO
+
+ALTER DATABASE [AccountabilityAccounting] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+
+ALTER DATABASE [AccountabilityAccounting] SET PARAMETERIZATION SIMPLE 
+GO
+
+ALTER DATABASE [AccountabilityAccounting] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+
+ALTER DATABASE [AccountabilityAccounting] SET HONOR_BROKER_PRIORITY OFF 
+GO
+
+ALTER DATABASE [AccountabilityAccounting] SET RECOVERY FULL 
+GO
+
+ALTER DATABASE [AccountabilityAccounting] SET  MULTI_USER 
+GO
+
+ALTER DATABASE [AccountabilityAccounting] SET PAGE_VERIFY CHECKSUM  
+GO
+
+ALTER DATABASE [AccountabilityAccounting] SET DB_CHAINING OFF 
+GO
+
+ALTER DATABASE [AccountabilityAccounting] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+
+ALTER DATABASE [AccountabilityAccounting] SET TARGET_RECOVERY_TIME = 0 SECONDS 
+GO
+
+ALTER DATABASE [AccountabilityAccounting] SET DELAYED_DURABILITY = DISABLED 
+GO
+
+ALTER DATABASE [AccountabilityAccounting] SET  READ_WRITE 
+GO
+
+
+
+
+
+--Users Table -------------------------------------------------------------------------------------------
+USE [AccountabilityAccounting]
+GO
+
+/****** Object:  Table [dbo].[Users]    Script Date: 22.02.2019 14:26:22 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Users](
+	[IdUser] [int] IDENTITY(1,1) NOT NULL,
+	[UserName] [nvarchar](30) NOT NULL,
+	[Password] [nvarchar](30) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IdUser] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+--Storder Procedure ----------------------------------------------------------------------------------------------
+
+
+USE [AccountabilityAccounting]
+GO
+
+/****** Object:  StoredProcedure [dbo].[get_user]    Script Date: 22.02.2019 14:27:04 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[get_user]
+	-- Add the parameters for the stored procedure here
+	@login nvarchar(30),
+	@password nvarchar(30),
+	@IdUser int output,
+	@userName nvarchar(30) output
+AS
+BEGIN
+	    -- Insert statements for procedure here
+	select @IdUser = IdUser, @userName=UserName from Users where [UserName] = @login and [Password] = @password
+END
+GO
