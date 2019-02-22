@@ -8,6 +8,6 @@ namespace AccountabilityAccountingDataAccess
 {
     class DBAccess
     {
-        public static string AccountabilityAccountingConnectionString = "Data Source=.;Initial Catalog=AccountabilityAccounting;Integrated Security=true";
+        public static string AccountabilityAccountingConnectionString = "Data Source=.;Initial Catalog=AccountabilityAccounting;Integrated Security=true";        
     }
 }
