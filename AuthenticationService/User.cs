@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
 using System.Runtime.Serialization;
+using System.Security.Cryptography;
 
 namespace AuthenticationService
 {
@@ -19,6 +20,16 @@ namespace AuthenticationService
         {
             this.UserId = userId;
             this.UserName = userName;
+        }
+
+        public static string ComputeHash(string plaintext)
+        {
+            HashAlgorithm mhash = new SHA1CryptoServiceProvider();
+            byte[] bytValue = Encoding.UTF8.GetBytes(plaintext);
+            byte[] bytHash = mhash.ComputeHash(bytValue);
+            mhash.Clear();
+            Console.WriteLine(Convert.ToBase64String(bytHash));
+            return Convert.ToBase64String(bytHash);
         }
     }
 }

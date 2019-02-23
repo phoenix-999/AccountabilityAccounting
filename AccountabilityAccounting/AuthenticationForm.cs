@@ -30,7 +30,8 @@ namespace AccountabilityAccounting
             AuthenticationClient authencticationClient = new AuthenticationClient();
             try
             {
-                User user = authencticationClient.Authenticate(tbLogin.Text, tbPassword.Text);
+                User user = authencticationClient.Authenticate(tbLogin.Text, User.ComputeHash(tbPassword.Text));
+                
                 //Запоминает пользователя в partial классе. Изменение пользователя в ходе выполнения теоретически не возможно по условиям setter свойства.
                 User.Current = user;
 

@@ -8,7 +8,8 @@ using System.IdentityModel.Tokens;
 using System.ServiceModel;
 using AccountabilityAccountingDataAccess;
 using System.Data;
-
+using System.Security.Cryptography;
+using System.Windows.Forms;
 
 namespace AuthenticationService
 {
@@ -20,7 +21,8 @@ namespace AuthenticationService
         public User Authenticate(string login, string password)
         {
             User user;
-            if(CheckUser(login, password, out user))
+            
+            if (CheckUser(login, password, out user))
             {
                 return user;
             }
@@ -59,6 +61,8 @@ namespace AuthenticationService
             if (user != null && user.UserId != null) return true;
             else return false;
         }
+
+        
 
     }
 }

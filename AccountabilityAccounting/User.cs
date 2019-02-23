@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,6 +23,16 @@ namespace AccountabilityAccounting.AuthenticationService
                     currentUser = value;
                 }
             }
+        }
+
+        public static string ComputeHash(string plaintext)
+        {
+            HashAlgorithm mhash = new SHA1CryptoServiceProvider();
+            byte[] bytValue = Encoding.UTF8.GetBytes(plaintext);
+            byte[] bytHash = mhash.ComputeHash(bytValue);
+            mhash.Clear();
+            Console.WriteLine(Convert.ToBase64String(bytHash));
+            return Convert.ToBase64String(bytHash);
         }
     }
 }
