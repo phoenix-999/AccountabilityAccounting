@@ -49,7 +49,7 @@ namespace AuthenticationService
                 table = auth.GetUserAccountabilityAccounting(login, password);
                 DataRow row = table.Rows[0];
 
-                userId = row["IdUser"] as int?; //исправить IdUser
+                userId = row["IdUser"] as int?; 
                 userName = row["UserName"] as string;
                 newUser = new User(userId, userName);
                 user = newUser;                

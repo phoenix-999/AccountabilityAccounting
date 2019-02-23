@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DataAccessService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DataAccessService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="Selector">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Predicates" nillable="true" type="q1:ArrayOfKeyValueOfstringstring" />
+      <xs:element minOccurs="0" name="SelectorOption" type="tns:SelectorOptions" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Selector" nillable="true" type="tns:Selector" />
+  <xs:simpleType name="SelectorOptions">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Test" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="SelectorOptions" nillable="true" type="tns:SelectorOptions" />
+</xs:schema>

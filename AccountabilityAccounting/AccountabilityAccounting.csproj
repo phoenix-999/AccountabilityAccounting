@@ -83,6 +83,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\DataProviderService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="User.cs" />
     <EmbeddedResource Include="AuthenticationForm.resx">
       <DependentUpon>AuthenticationForm.cs</DependentUpon>
@@ -99,6 +104,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Properties\DataSources\System.Data.DataTable.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -127,6 +133,31 @@
     <None Include="Service References\AuthenticationService\System.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\DataProviderService\Arrays.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DataProviderService\AuthenticationService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DataProviderService\DataAccessService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DataProviderService\service.wsdl" />
+    <None Include="Service References\DataProviderService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DataProviderService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DataProviderService\System.Data.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DataProviderService\System.IdentityModel.Tokens.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DataProviderService\System.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -148,6 +179,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\AuthenticationService\" />
+    <WCFMetadataStorage Include="Service References\DataProviderService\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\AuthenticationService\configuration91.svcinfo" />
@@ -157,6 +189,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\AuthenticationService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DataProviderService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DataProviderService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DataProviderService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
