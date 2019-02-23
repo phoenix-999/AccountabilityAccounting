@@ -11,7 +11,7 @@ namespace DataAccessService
     public class Selector
     {
         [DataMember]
-        public SelectorOptions SelectorOption;
+        public SelectorOptions SelectorOption { get; set; }
 
         [DataMember]
         public Dictionary<string, string> Predicates { get; set; }
