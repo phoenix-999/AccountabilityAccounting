@@ -10,7 +10,7 @@
   <xs:element name="Selector" nillable="true" type="tns:Selector" />
   <xs:simpleType name="SelectorOptions">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="Test" />
+      <xs:enumeration value="GetSummary" />
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="SelectorOptions" nillable="true" type="tns:SelectorOptions" />

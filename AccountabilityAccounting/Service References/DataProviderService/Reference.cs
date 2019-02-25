@@ -79,7 +79,7 @@ namespace AccountabilityAccounting.DataProviderService {
     public enum SelectorOptions : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Test = 0,
+        GetSummary = 0,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]

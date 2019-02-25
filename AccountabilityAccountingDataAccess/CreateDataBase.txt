@@ -229,7 +229,7 @@ GO
 USE [AccountabilityAccounting]
 GO
 
-/****** Object:  Table [dbo].[Summary]    Script Date: 25.02.2019 11:33:32 ******/
+/****** Object:  Table [dbo].[Summary]    Script Date: 25.02.2019 12:16:08 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -237,6 +237,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[Summary](
+	[ActionDate] [date] NOT NULL,
 	[SummaryDate] [date] NOT NULL,
 	[IdProject] [int] NOT NULL,
 	[IdItem] [int] NOT NULL,
@@ -248,7 +249,7 @@ CREATE TABLE [dbo].[Summary](
 ) ON [PRIMARY]
 GO
 
-ALTER TABLE [dbo].[Summary] ADD  DEFAULT (CONVERT([date],getdate())) FOR [SummaryDate]
+ALTER TABLE [dbo].[Summary] ADD  DEFAULT (CONVERT([date],getdate())) FOR [ActionDate]
 GO
 
 ALTER TABLE [dbo].[Summary] ADD  DEFAULT ((0)) FOR [Summa]
@@ -291,6 +292,10 @@ GO
 
 
 
+GO
+
+
+
 ---------------------------------------------------------------------------
 
 
@@ -324,5 +329,36 @@ AS
 BEGIN
 	    -- Insert statements for procedure here
 	select @IdUser = IdUser, @userName=UserName from Users where [UserName] = @login and [Password] = @password
+END
+GO
+
+------------------------------------------------------------------------------------
+
+CREATE PROCEDURE get_summary
+	-- Add the parameters for the stored procedure here
+	@ds date,
+	@de date
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT
+		s.SummaryDate as 'Дата',
+		s.Sign as 'Знак',
+		p.ProjectName as 'Проект',
+		a.AccountableName as 'Подотчетник',
+		i.ItemDescription as 'Статья',
+		isnull(ti.TranscriptItemsDescription, '') as 'Расшифровка'
+	from
+		Summary s
+		inner join Projects p on (s.IdProject=p.IdProject)
+		inner join Accountables a on (s.IdAccounttable = a.IdAccountable)
+		inner join Items i on (s.IdItem = i.IdItem)
+		left join TranscriptItems ti on (s.IdTranscriptItem = ti.IdTranscriptItem)
+	where
+		cast(s.SummaryDate as date) between @ds and @de
 END
 GO

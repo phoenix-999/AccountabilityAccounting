@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AccountabilityAccountingDataAccess, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\AccountabilityAccountingDataAccess\bin\Debug\AccountabilityAccountingDataAccess.dll</HintPath>
+    </Reference>
     <Reference Include="AuthenticationService">
       <HintPath>..\AuthenticationService\bin\Debug\AuthenticationService.dll</HintPath>
     </Reference>
@@ -64,6 +68,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

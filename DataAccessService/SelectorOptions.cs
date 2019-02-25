@@ -9,6 +9,6 @@ namespace DataAccessService
     
     public enum SelectorOptions
     {
-        Test
+        GetSummary
     }
 }

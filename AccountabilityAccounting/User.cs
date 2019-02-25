@@ -34,5 +34,13 @@ namespace AccountabilityAccounting.AuthenticationService
             Console.WriteLine(Convert.ToBase64String(bytHash));
             return Convert.ToBase64String(bytHash);
         }
+
+        public static implicit operator DataProviderService.User (AuthenticationService.User authenticatedUser)
+        {
+            DataProviderService.User user = new DataProviderService.User();
+            user.UserId = authenticatedUser.UserId;
+            user.UserName = authenticatedUser.UserName;
+            return user;
+        }
     }
 }
