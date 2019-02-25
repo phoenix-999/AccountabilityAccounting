@@ -47,7 +47,7 @@ namespace AccountabilityAccounting
             }
             catch (FaultException<DbException> ex)
             {
-                MessageBox.Show(ex.Detail.Detail, "Ошибка входа", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ошибка в работе с базой данных. Обратитесть к администратору.", "Ошибка входа", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
 
             }
