@@ -47,6 +47,9 @@ namespace AccountabilityAccounting
                 tableDataGridViewMainTab = dataProviderClient.GetData(selector, (DataProviderService.User)AuthenticationService.User.Current);
 
                 dataGridViewMainTab.DataSource = tableDataGridViewMainTab;
+
+                // TODO добавить выпадающий список в столбцы
+                
             }
             catch (FaultException<SecurityTokenException> ex)
             {
@@ -61,5 +64,8 @@ namespace AccountabilityAccounting
 
             }
         }
+
+
+        
     }
 }

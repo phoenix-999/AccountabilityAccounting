@@ -199,7 +199,7 @@
         private System.Windows.Forms.DateTimePicker dtBegin;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridViewMainTab;
         private System.Windows.Forms.Button btnMainTabGetData;
+        internal System.Windows.Forms.DataGridView dataGridViewMainTab;
     }
 }
