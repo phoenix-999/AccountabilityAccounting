@@ -39,11 +39,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridViewMainTab = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lbCount = new System.Windows.Forms.Label();
+            this.lbSum = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPageMain.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMainTab)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -75,12 +79,15 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.dataGridViewMainTab, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1288, 695);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -94,7 +101,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox1.Location = new System.Drawing.Point(6, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(306, 62);
+            this.groupBox1.Size = new System.Drawing.Size(306, 60);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Период";
@@ -152,9 +159,9 @@
             this.dataGridViewMainTab.BackgroundColor = System.Drawing.SystemColors.Info;
             this.dataGridViewMainTab.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewMainTab.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewMainTab.Location = new System.Drawing.Point(6, 77);
+            this.dataGridViewMainTab.Location = new System.Drawing.Point(6, 75);
             this.dataGridViewMainTab.Name = "dataGridViewMainTab";
-            this.dataGridViewMainTab.Size = new System.Drawing.Size(1276, 612);
+            this.dataGridViewMainTab.Size = new System.Drawing.Size(1276, 590);
             this.dataGridViewMainTab.TabIndex = 1;
             // 
             // tabPage2
@@ -166,6 +173,32 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lbSum);
+            this.panel1.Controls.Add(this.lbCount);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(6, 674);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1276, 15);
+            this.panel1.TabIndex = 2;
+            // 
+            // lbCount
+            // 
+            this.lbCount.AutoSize = true;
+            this.lbCount.Location = new System.Drawing.Point(0, 2);
+            this.lbCount.Name = "lbCount";
+            this.lbCount.Size = new System.Drawing.Size(0, 13);
+            this.lbCount.TabIndex = 0;
+            // 
+            // lbSum
+            // 
+            this.lbSum.AutoSize = true;
+            this.lbSum.Location = new System.Drawing.Point(98, 2);
+            this.lbSum.Name = "lbSum";
+            this.lbSum.Size = new System.Drawing.Size(0, 13);
+            this.lbSum.TabIndex = 1;
             // 
             // MainForm
             // 
@@ -184,6 +217,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMainTab)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -201,5 +236,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnMainTabGetData;
         internal System.Windows.Forms.DataGridView dataGridViewMainTab;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lbSum;
+        private System.Windows.Forms.Label lbCount;
     }
 }

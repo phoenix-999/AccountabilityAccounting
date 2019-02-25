@@ -12,6 +12,7 @@ using AccountabilityAccounting.AuthenticationService;
 using System.IdentityModel.Tokens;
 using System.ServiceModel;
 using System.Data;
+using System.Globalization;
 
 namespace AccountabilityAccounting
 {
@@ -25,6 +26,7 @@ namespace AccountabilityAccounting
             InitializeComponent();
 
             this.FormClosed += (ob, e)=>{ Application.Exit(); };
+
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -49,8 +51,9 @@ namespace AccountabilityAccounting
 
                 dataGridViewMainTab.DataSource = tableDataGridViewMainTab;
 
-                // TODO добавить выпадающий список в столбцы
-                
+                dataGridViewMainTab.SelectionChanged += DataGridViewMainTab_SelectionChanged;
+
+                dataGridViewMainTab.Columns["Сумма"].DefaultCellStyle.Format = string.Format("C2", new CultureInfo("uk-UA"));
             }
             catch (FaultException<SecurityTokenException> ex)
             {
@@ -66,7 +69,39 @@ namespace AccountabilityAccounting
             }
         }
 
+        private void DataGridViewMainTab_SelectionChanged(object sender, EventArgs e)
+        {
+            lbCount.Text = string.Format("Колиество: {0}", dataGridViewMainTab.SelectedCells.Count);
+            if(dataGridViewMainTab.SelectedCells.Count <= 1)
+            {
+                lbCount.Text = string.Empty;
+            }
 
-        
+            double sum = 0;
+
+            foreach(DataGridViewCell cell in dataGridViewMainTab.SelectedCells)
+            {
+                if (cell.Value.ToString() == string.Empty)
+                    continue;
+                try
+                {
+                    sum += double.Parse(cell.Value.ToString());
+                }
+                catch(Exception ex)
+                {
+                    sum = double.NaN;
+                }
+            }
+
+            if(!double.IsNaN(sum))
+            {
+                lbSum.Text = string.Format("Сумма: {0}", sum.ToString("C2", new CultureInfo("uk-UA")));
+            }
+
+            if (dataGridViewMainTab.SelectedCells.Count <= 1)
+            {
+                lbSum.Text = string.Empty;
+            }
+        }
     }
 }
