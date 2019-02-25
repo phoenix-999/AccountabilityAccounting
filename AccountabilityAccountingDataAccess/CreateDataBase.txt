@@ -334,10 +334,25 @@ GO
 
 ------------------------------------------------------------------------------------
 
-CREATE PROCEDURE get_summary
+USE [AccountabilityAccounting]
+GO
+
+/****** Object:  StoredProcedure [dbo].[get_summary]    Script Date: 25.02.2019 13:40:25 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[get_summary]
 	-- Add the parameters for the stored procedure here
-	@ds date,
-	@de date
+	@ds datetime,
+	@de datetime
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -351,7 +366,8 @@ BEGIN
 		p.ProjectName as 'Проект',
 		a.AccountableName as 'Подотчетник',
 		i.ItemDescription as 'Статья',
-		isnull(ti.TranscriptItemsDescription, '') as 'Расшифровка'
+		isnull(ti.TranscriptItemsDescription, '') as 'Расшифровка',
+		cast(s.Summa as float) / 100 as 'Сумма'
 	from
 		Summary s
 		inner join Projects p on (s.IdProject=p.IdProject)
@@ -359,6 +375,6 @@ BEGIN
 		inner join Items i on (s.IdItem = i.IdItem)
 		left join TranscriptItems ti on (s.IdTranscriptItem = ti.IdTranscriptItem)
 	where
-		cast(s.SummaryDate as date) between @ds and @de
+		cast(s.SummaryDate as date) between cast(@ds as date) and cast(@de as date)
 END
 GO
