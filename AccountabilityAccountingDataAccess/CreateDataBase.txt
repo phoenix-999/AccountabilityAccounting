@@ -131,6 +131,170 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 GO
 
+--------------------------------------------------------------------
+USE [AccountabilityAccounting]
+GO
+
+/****** Object:  Table [dbo].[Accountables]    Script Date: 25.02.2019 11:32:08 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Accountables](
+	[IdAccountable] [int] IDENTITY(1,1) NOT NULL,
+	[AccountableName] [nvarchar](200) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IdAccountable] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+-------------------------------------------------------------------------
+
+USE [AccountabilityAccounting]
+GO
+
+/****** Object:  Table [dbo].[Items]    Script Date: 25.02.2019 11:32:33 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Items](
+	[IdItem] [int] IDENTITY(1,1) NOT NULL,
+	[ItemDescription] [nvarchar](200) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IdItem] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+----------------------------------------------------------------------------
+
+
+USE [AccountabilityAccounting]
+GO
+
+/****** Object:  Table [dbo].[Projects]    Script Date: 25.02.2019 11:32:50 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Projects](
+	[IdProject] [int] IDENTITY(1,1) NOT NULL,
+	[ProjectName] [nvarchar](200) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IdProject] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+---------------------------------------------------------------------------
+
+USE [AccountabilityAccounting]
+GO
+
+/****** Object:  Table [dbo].[TranscriptItems]    Script Date: 25.02.2019 11:33:13 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[TranscriptItems](
+	[IdTranscriptItem] [int] IDENTITY(1,1) NOT NULL,
+	[TranscriptItemsDescription] [nvarchar](200) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IdTranscriptItem] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+-----------------------------------------------------------------------------------
+
+
+USE [AccountabilityAccounting]
+GO
+
+/****** Object:  Table [dbo].[Summary]    Script Date: 25.02.2019 11:33:32 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Summary](
+	[SummaryDate] [date] NOT NULL,
+	[IdProject] [int] NOT NULL,
+	[IdItem] [int] NOT NULL,
+	[IdTranscriptItem] [int] NULL,
+	[IdAccounttable] [int] NOT NULL,
+	[Sign] [char](1) NOT NULL,
+	[Summa] [int] NOT NULL,
+	[IdUser] [int] NOT NULL
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Summary] ADD  DEFAULT (CONVERT([date],getdate())) FOR [SummaryDate]
+GO
+
+ALTER TABLE [dbo].[Summary] ADD  DEFAULT ((0)) FOR [Summa]
+GO
+
+ALTER TABLE [dbo].[Summary]  WITH CHECK ADD  CONSTRAINT [FK_Summary_Accountables] FOREIGN KEY([IdAccounttable])
+REFERENCES [dbo].[Accountables] ([IdAccountable])
+GO
+
+ALTER TABLE [dbo].[Summary] CHECK CONSTRAINT [FK_Summary_Accountables]
+GO
+
+ALTER TABLE [dbo].[Summary]  WITH CHECK ADD  CONSTRAINT [FK_Summary_Items] FOREIGN KEY([IdItem])
+REFERENCES [dbo].[Items] ([IdItem])
+GO
+
+ALTER TABLE [dbo].[Summary] CHECK CONSTRAINT [FK_Summary_Items]
+GO
+
+ALTER TABLE [dbo].[Summary]  WITH CHECK ADD  CONSTRAINT [FK_Summary_Projects] FOREIGN KEY([IdProject])
+REFERENCES [dbo].[Projects] ([IdProject])
+GO
+
+ALTER TABLE [dbo].[Summary] CHECK CONSTRAINT [FK_Summary_Projects]
+GO
+
+ALTER TABLE [dbo].[Summary]  WITH CHECK ADD  CONSTRAINT [FK_Summary_TranscriptItems] FOREIGN KEY([IdTranscriptItem])
+REFERENCES [dbo].[TranscriptItems] ([IdTranscriptItem])
+GO
+
+ALTER TABLE [dbo].[Summary] CHECK CONSTRAINT [FK_Summary_TranscriptItems]
+GO
+
+ALTER TABLE [dbo].[Summary]  WITH CHECK ADD  CONSTRAINT [FK_Summary_Users] FOREIGN KEY([IdUser])
+REFERENCES [dbo].[Users] ([IdUser])
+GO
+
+ALTER TABLE [dbo].[Summary] CHECK CONSTRAINT [FK_Summary_Users]
+GO
+
+
+
+---------------------------------------------------------------------------
+
+
+
 
 --Storder Procedure ----------------------------------------------------------------------------------------------
 
