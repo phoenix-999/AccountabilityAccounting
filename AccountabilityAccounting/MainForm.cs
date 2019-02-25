@@ -35,6 +35,7 @@ namespace AccountabilityAccounting
         private void btnMainTabGetData_Click(object sender, EventArgs e)
         {
             dataProviderClient = new DataProviderClient();
+
             DataProviderService.Selector selector = new Selector();
             selector.SelectorOption = SelectorOptions.GetSummary;
             selector.Predicates = new Dictionary<string, string>(); 
