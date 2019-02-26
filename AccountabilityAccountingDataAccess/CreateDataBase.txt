@@ -378,3 +378,41 @@ BEGIN
 		cast(s.SummaryDate as date) between cast(@ds as date) and cast(@de as date)
 END
 GO
+--------------------------------------------------------------------------------
+
+CREATE PROCEDURE insert_summary
+	@summaryDate datetime,
+	@projectName nvarchar,
+	@itemDescription nvarchar,
+	@transcriptItemDescription nvarchar,
+	@accountableName nvarchar,
+	@sign char(1),
+	@summa int,
+	@userName nvarchar
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	declare @idProject int, @idItem int, @idTranscriptItem int, @idAccountable int, @idUser int
+	set @idProject = (select top(1) IdProject from Projects where ProjectName=@projectName)
+	set @idItem = (select top(1) IdItem from Items where ItemDescription=@itemDescription)
+	set @idTranscriptItem = (select top(1) IdTranscriptItem from TranscriptItems where TranscriptItemsDescription=@transcriptItemDescription)
+	set @idAccountable = (select top(1) IdAccountable from Accountables where AccountableName=@accountableName)
+	set @idUser = (select top(1) IdUser from Users where UserName=@userName)
+
+	insert into Summary (SummaryDate, IdProject, IdItem, IdTranscriptItem, IdAccounttable, Sign, Summa, IdUser) values
+	(
+		@summaryDate,
+		@idProject,
+		@idItem,
+		@idTranscriptItem,
+		@idAccountable,
+		@sign,
+		@summa,
+		@idUser
+	)
+END
+GO
