@@ -58,6 +58,8 @@ namespace AccountabilityAccounting
                 dataGridViewMainTab.CellDoubleClick += (ob, ev) => { new EditRowMainTab(dataGridViewMainTab.CurrentRow).Show(); };
 
                 this.btnNewString.Click += new System.EventHandler(this.btnNewString_Click);
+
+                this.btnDeleteString.Click += new System.EventHandler(this.btnDeleteString_Click);
             }
             catch (FaultException<SecurityTokenException> ex)
             {
@@ -111,6 +113,12 @@ namespace AccountabilityAccounting
         private void btnNewString_Click(object sender, EventArgs e)
         {
             DataRow row = tableDataGridViewMainTab.Rows.Add();
+        }
+
+        private void btnDeleteString_Click(object sender, EventArgs e)
+        {
+            int index = dataGridViewMainTab.CurrentRow.Index;
+            tableDataGridViewMainTab.Rows[index].Delete();
         }
     }
 }

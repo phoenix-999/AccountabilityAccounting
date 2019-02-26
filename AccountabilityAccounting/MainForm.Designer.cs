@@ -45,6 +45,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnDeleteString = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageMain.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -148,11 +149,12 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnDeleteString);
             this.groupBox2.Controls.Add(this.btnNewString);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox2.Location = new System.Drawing.Point(325, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(182, 60);
+            this.groupBox2.Size = new System.Drawing.Size(189, 60);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Строки";
@@ -239,6 +241,16 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // btnDeleteString
+            // 
+            this.btnDeleteString.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnDeleteString.Location = new System.Drawing.Point(98, 14);
+            this.btnDeleteString.Name = "btnDeleteString";
+            this.btnDeleteString.Size = new System.Drawing.Size(84, 40);
+            this.btnDeleteString.TabIndex = 1;
+            this.btnDeleteString.Text = "Удалить строку";
+            this.btnDeleteString.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -283,5 +295,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnNewString;
+        private System.Windows.Forms.Button btnDeleteString;
     }
 }
