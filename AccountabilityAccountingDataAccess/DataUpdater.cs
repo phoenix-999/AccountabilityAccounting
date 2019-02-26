@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace AccountabilityAccountingDataAccess
 {
-    public class DataInserter
+    public class DataUpdater
     {
         
         public void UpdateSummary(DataTable table, string userName)
