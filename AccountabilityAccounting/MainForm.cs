@@ -117,8 +117,22 @@ namespace AccountabilityAccounting
 
         private void btnDeleteString_Click(object sender, EventArgs e)
         {
+            string asc = "Вы уверены, что хотите удалить строку со значениями: ";
+            
             int index = dataGridViewMainTab.CurrentRow.Index;
-            tableDataGridViewMainTab.Rows[index].Delete();
+
+            foreach(DataGridViewCell cell in dataGridViewMainTab.CurrentRow.Cells)
+            {
+                asc += string.Format("{0} - {1}\n", cell.OwningColumn.Name, cell.Value);
+            }
+
+            asc += "После применения изменения не обратимы.";
+
+            DialogResult dialogResult = MessageBox.Show(asc, "Подтверждение удаления", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                tableDataGridViewMainTab.Rows[index].Delete();
+            }          
         }
     }
 }
