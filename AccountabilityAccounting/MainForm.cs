@@ -14,6 +14,7 @@ using System.ServiceModel;
 using System.Data;
 using System.Globalization;
 using NLog;
+using System.Transactions;
 
 namespace AccountabilityAccounting
 {
@@ -148,24 +149,34 @@ namespace AccountabilityAccounting
                 return;
             }
 
+                        
             DataProviderService.Updater updater = new Updater();
             updater.UpdaterOption = UpdaterOptions.UpdateSummary;
-            try
+            using (TransactionScope transaction = new TransactionScope())
             {
-                dataProviderClient.UpdateData(updater, tableDataGridViewMainTab, (DataProviderService.User)AuthenticationService.User.Current);
-            }
-            catch (FaultException<SecurityTokenException> ex)
-            {
-                MessageBox.Show("Вход в программу не выполнен", "Ошибка входа", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (FaultException<DataProviderService.DbException> ex)
-            {
-                MessageBox.Show("Ошибка в работе с базой данных. Обратитесть к администратору.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch(CommunicationException ex)
-            {
-                Log.Error("Detail: {1}",  ex.ToString());
-                MessageBox.Show("Ошибка обращения к серверу. Обратитесь к администартору", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                try
+                {
+                    dataProviderClient.UpdateData(updater, tableDataGridViewMainTab, (DataProviderService.User)AuthenticationService.User.Current);
+                    MessageBox.Show(Transaction.Current.TransactionInformation.DistributedIdentifier.ToString());
+                    transaction.Complete();                    
+                }
+                catch (FaultException<SecurityTokenException> ex)
+                {
+                    Transaction.Current.Rollback();
+                    MessageBox.Show("Вход в программу не выполнен", "Ошибка входа", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    
+                }
+                catch (FaultException<DataProviderService.DbException> ex)
+                {
+                    Transaction.Current.Rollback();
+                    MessageBox.Show("Ошибка в работе с базой данных. Обратитесть к администратору.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (CommunicationException ex)
+                {
+                    Transaction.Current.Rollback();
+                    Log.Error("Detail: {1}", ex.ToString());
+                    MessageBox.Show("Ошибка обращения к серверу. Обратитесь к администартору", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

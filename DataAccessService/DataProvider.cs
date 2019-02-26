@@ -9,6 +9,7 @@ using System.IdentityModel.Tokens;
 using System.ServiceModel;
 using NLog;
 using AccountabilityAccountingDataAccess;
+using System.Transactions;
 
 namespace DataAccessService
 {
@@ -41,6 +42,7 @@ namespace DataAccessService
         [OperationBehavior(TransactionScopeRequired = true)]
         public void UpdateData(Updater updater, DataTable table, AuthenticationService.User user)
         {
+            Log.Info("Transactions\nUser: {0}, TransactionId: {1}", user.UserName, Transaction.Current.TransactionInformation.DistributedIdentifier);
             if (!CheckUser(user))
             {
                 Log.Info("User: {}, Detail: Unknown User", user.UserName);
