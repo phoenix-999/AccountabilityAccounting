@@ -42,7 +42,7 @@ namespace AccountabilityAccountingDataAccess
             command.Parameters.Add("@transcriptItemDescription", SqlDbType.NChar, 200, "Расшифровка");
             command.Parameters.Add("@accountableName", SqlDbType.NChar, 200, "Подотчетник");
             command.Parameters.Add("@sign", SqlDbType.Char, 1, "Знак");
-            command.Parameters.Add("@summa", SqlDbType.Int, 32,"Сумма");
+            command.Parameters.AddWithValue("@summa", "Сумма");
             command.Parameters.Add("@userName", SqlDbType.NChar, 30, userName);
 
             return command;
