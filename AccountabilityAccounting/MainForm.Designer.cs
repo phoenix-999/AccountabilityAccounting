@@ -36,6 +36,8 @@
             this.lbSum = new System.Windows.Forms.Label();
             this.lbCount = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tbSendToDB = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnDeleteString = new System.Windows.Forms.Button();
             this.btnNewString = new System.Windows.Forms.Button();
@@ -46,17 +48,15 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.tbSendToDB = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageMain.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMainTab)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -151,6 +151,25 @@
             this.panel2.Size = new System.Drawing.Size(1276, 60);
             this.panel2.TabIndex = 3;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.tbSendToDB);
+            this.groupBox3.Location = new System.Drawing.Point(1107, 3);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(157, 56);
+            this.groupBox3.TabIndex = 2;
+            this.groupBox3.TabStop = false;
+            // 
+            // tbSendToDB
+            // 
+            this.tbSendToDB.Location = new System.Drawing.Point(6, 11);
+            this.tbSendToDB.Name = "tbSendToDB";
+            this.tbSendToDB.Size = new System.Drawing.Size(145, 39);
+            this.tbSendToDB.TabIndex = 0;
+            this.tbSendToDB.Text = "Отправить изменения на сервер";
+            this.tbSendToDB.UseVisualStyleBackColor = true;
+            this.tbSendToDB.Click += new System.EventHandler(this.tbSendToDB_Click);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btnDeleteString);
@@ -224,6 +243,7 @@
             this.dtBegin.Name = "dtBegin";
             this.dtBegin.Size = new System.Drawing.Size(168, 20);
             this.dtBegin.TabIndex = 2;
+            this.dtBegin.Value = new System.DateTime(2019, 2, 26, 0, 0, 0, 0);
             // 
             // label2
             // 
@@ -255,25 +275,6 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.tbSendToDB);
-            this.groupBox3.Location = new System.Drawing.Point(1107, 3);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(157, 56);
-            this.groupBox3.TabIndex = 2;
-            this.groupBox3.TabStop = false;
-            // 
-            // tbSendToDB
-            // 
-            this.tbSendToDB.Location = new System.Drawing.Point(6, 11);
-            this.tbSendToDB.Name = "tbSendToDB";
-            this.tbSendToDB.Size = new System.Drawing.Size(145, 39);
-            this.tbSendToDB.TabIndex = 0;
-            this.tbSendToDB.Text = "Отправить изменения на сервер";
-            this.tbSendToDB.UseVisualStyleBackColor = true;
-            this.tbSendToDB.Click += new System.EventHandler(this.tbSendToDB_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -292,10 +293,10 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

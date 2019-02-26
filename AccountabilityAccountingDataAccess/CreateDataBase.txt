@@ -381,19 +381,18 @@ GO
 --------------------------------------------------------------------------------
 
 CREATE PROCEDURE [dbo].[insert_summary]
-	@summaryDate varchar,
-	@projectName nvarchar,
-	@itemDescription nvarchar,
-	@transcriptItemDescription nvarchar,
-	@accountableName nvarchar,
+	@summaryDate datetime,
+	@projectName nvarchar(200),
+	@itemDescription nvarchar(200),
+	@transcriptItemDescription nvarchar(200),
+	@accountableName nvarchar(200),
 	@sign char(1),
-	@summa nvarchar,
-	@userName nvarchar
+	@summa float,
+	@userName nvarchar(30)
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
 	declare @idProject int, @idItem int, @idTranscriptItem int, @idAccountable int, @idUser int
@@ -405,16 +404,13 @@ BEGIN
 
 	insert into Summary (SummaryDate, IdProject, IdItem, IdTranscriptItem, IdAccounttable, Sign, Summa, IdUser) values
 	(
-		convert(datetime, @summaryDate, 120),
+		@summaryDate,
 		@idProject,
 		@idItem,
 		@idTranscriptItem,
 		@idAccountable,
 		@sign,
-		case
-		when @summa is not null then cast(convert(float, @summa, 2) * 100 as int)
-		else 0
-		end,
+		cast(convert(float, @summa, 2) * 100 as int),
 		@idUser
 	)
 END

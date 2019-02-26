@@ -36,7 +36,7 @@ namespace AccountabilityAccountingDataAccess
             command.CommandType = CommandType.StoredProcedure;
             command.CommandText = "insert_summary";
 
-            command.Parameters.Add("@summaryDate", SqlDbType.NChar, 200, "Дата");
+            command.Parameters.Add("@summaryDate", SqlDbType.DateTime, 32, "Дата");
             command.Parameters.Add("@projectName", SqlDbType.NChar, 200, "Проект");
             command.Parameters.Add("@itemDescription", SqlDbType.NChar, 200, "Статья");
             command.Parameters.Add("@transcriptItemDescription", SqlDbType.NChar, 200, "Расшифровка");
