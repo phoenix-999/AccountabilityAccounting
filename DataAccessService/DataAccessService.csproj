@@ -65,6 +65,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Selector.cs" />
     <Compile Include="SelectorOptions.cs" />
+    <Compile Include="Updater.cs" />
+    <Compile Include="UpdaterOptions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

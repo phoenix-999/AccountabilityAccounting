@@ -29,6 +29,19 @@ namespace DataAccessService
             return table;
         }
 
+        [OperationBehavior(TransactionScopeRequired = true)]
+        public void UpdateData(Updater updater, DataTable table, AuthenticationService.User user)
+        {
+            if (!CheckUser(user))
+            {
+                Log.Info("User: {}, Detail: Unknown User", user.UserName);
+                throw new FaultException<SecurityTokenException>(new SecurityTokenException("Unknown User"));
+            }
+
+            //TODO реализовать заполнения таблиц
+            UpdateDataFromOptions(updater, table, user);
+        }
+
         private bool CheckUser(AuthenticationService.User user)
         {
             if (user != null) return true;
@@ -54,6 +67,23 @@ namespace DataAccessService
             }
 
             return table;
+        }
+
+        private void UpdateDataFromOptions(Updater updater, DataTable table, AuthenticationService.User user)
+        {
+            DataUpdater update = new DataUpdater();
+            if (updater.UpdaterOption == UpdaterOptions.UpdateSummary)
+            {
+                try
+                {
+                    update.UpdateSummary(table, user.UserName);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error("UserId: {0}, detail: {1}", user.UserId, ex.ToString());
+                    throw new FaultException<DbException>(new DbException(ex));
+                }
+            }
         }
     }
 }

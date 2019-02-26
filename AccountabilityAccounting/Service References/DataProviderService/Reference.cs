@@ -188,6 +188,59 @@ namespace AccountabilityAccounting.DataProviderService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Updater", Namespace="http://schemas.datacontract.org/2004/07/DataAccessService")]
+    [System.SerializableAttribute()]
+    public partial class Updater : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private AccountabilityAccounting.DataProviderService.UpdaterOptions UpdaterOptionField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public AccountabilityAccounting.DataProviderService.UpdaterOptions UpdaterOption {
+            get {
+                return this.UpdaterOptionField;
+            }
+            set {
+                if ((this.UpdaterOptionField.Equals(value) != true)) {
+                    this.UpdaterOptionField = value;
+                    this.RaisePropertyChanged("UpdaterOption");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UpdaterOptions", Namespace="http://schemas.datacontract.org/2004/07/DataAccessService")]
+    public enum UpdaterOptions : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        UpdateSummary = 0,
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DataProviderService.IDataProvider")]
     public interface IDataProvider {
@@ -199,6 +252,13 @@ namespace AccountabilityAccounting.DataProviderService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetData", ReplyAction="http://tempuri.org/IDataProvider/GetDataResponse")]
         System.Threading.Tasks.Task<System.Data.DataTable> GetDataAsync(AccountabilityAccounting.DataProviderService.Selector selector, AccountabilityAccounting.DataProviderService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateData", ReplyAction="http://tempuri.org/IDataProvider/UpdateDataResponse")]
+        [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
+        void UpdateData(AccountabilityAccounting.DataProviderService.Updater updater, System.Data.DataTable table, AccountabilityAccounting.DataProviderService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateData", ReplyAction="http://tempuri.org/IDataProvider/UpdateDataResponse")]
+        System.Threading.Tasks.Task UpdateDataAsync(AccountabilityAccounting.DataProviderService.Updater updater, System.Data.DataTable table, AccountabilityAccounting.DataProviderService.User user);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -234,6 +294,14 @@ namespace AccountabilityAccounting.DataProviderService {
         
         public System.Threading.Tasks.Task<System.Data.DataTable> GetDataAsync(AccountabilityAccounting.DataProviderService.Selector selector, AccountabilityAccounting.DataProviderService.User user) {
             return base.Channel.GetDataAsync(selector, user);
+        }
+        
+        public void UpdateData(AccountabilityAccounting.DataProviderService.Updater updater, System.Data.DataTable table, AccountabilityAccounting.DataProviderService.User user) {
+            base.Channel.UpdateData(updater, table, user);
+        }
+        
+        public System.Threading.Tasks.Task UpdateDataAsync(AccountabilityAccounting.DataProviderService.Updater updater, System.Data.DataTable table, AccountabilityAccounting.DataProviderService.User user) {
+            return base.Channel.UpdateDataAsync(updater, table, user);
         }
     }
 }

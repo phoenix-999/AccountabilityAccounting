@@ -18,5 +18,9 @@ namespace DataAccessService
         [FaultContract(typeof(SecurityTokenException))]
         [FaultContract(typeof(AuthenticationService.DbException))]
         DataTable GetData(Selector selector, AuthenticationService.User user);
+
+        [OperationContract]
+        [TransactionFlow(TransactionFlowOption.Allowed)]
+        void UpdateData(Updater updater, DataTable table, AuthenticationService.User user);
     }
 }

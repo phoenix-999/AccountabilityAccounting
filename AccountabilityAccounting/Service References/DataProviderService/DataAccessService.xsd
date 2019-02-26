@@ -14,4 +14,16 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="SelectorOptions" nillable="true" type="tns:SelectorOptions" />
+  <xs:complexType name="Updater">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="UpdaterOption" type="tns:UpdaterOptions" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Updater" nillable="true" type="tns:Updater" />
+  <xs:simpleType name="UpdaterOptions">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="UpdateSummary" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="UpdaterOptions" nillable="true" type="tns:UpdaterOptions" />
 </xs:schema>
