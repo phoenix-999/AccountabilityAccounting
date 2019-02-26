@@ -24,9 +24,18 @@ namespace DataAccessService
                 throw new FaultException<SecurityTokenException>(new SecurityTokenException("Unknown User"));
             }
 
-            DataTable table = SelectData(user, selector);
+            try
+            {
+                DataTable table = SelectData(user, selector);
+                return table;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("UserId: {0}, detail: {1}", user.UserId, ex.ToString());
+                throw new FaultException<DbException>(new DbException(ex));
+            }
 
-            return table;
+            
         }
 
         [OperationBehavior(TransactionScopeRequired = true)]
@@ -38,8 +47,15 @@ namespace DataAccessService
                 throw new FaultException<SecurityTokenException>(new SecurityTokenException("Unknown User"));
             }
 
-            //TODO реализовать заполнения таблиц
-            UpdateDataFromOptions(updater, table, user);
+            try
+            {
+                UpdateDataFromOptions(updater, table, user);
+            }
+            catch(Exception ex)
+            {
+                Log.Error("UserId: {0}, detail: {1}", user.UserId, ex.ToString());
+                throw new FaultException<DbException>(new DbException(ex));
+            }
         }
 
         private bool CheckUser(AuthenticationService.User user)
@@ -55,15 +71,7 @@ namespace DataAccessService
 
             if(selector.SelectorOption == SelectorOptions.GetSummary)
             {
-                try
-                {
-                    table = select.GetSummary(selector.Predicates["dateStart"], selector.Predicates["dateEnd"]);
-                }
-                catch(Exception ex)
-                {
-                    Log.Error("UserId: {0}, detail: {1}", user.UserId, ex.ToString());
-                    throw new FaultException<DbException>(new DbException(ex));
-                }
+                table = select.GetSummary(selector.Predicates["dateStart"], selector.Predicates["dateEnd"]);                
             }
 
             return table;
@@ -74,15 +82,8 @@ namespace DataAccessService
             DataUpdater update = new DataUpdater();
             if (updater.UpdaterOption == UpdaterOptions.UpdateSummary)
             {
-                try
-                {
-                    update.UpdateSummary(table, user.UserName);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error("UserId: {0}, detail: {1}", user.UserId, ex.ToString());
-                    throw new FaultException<DbException>(new DbException(ex));
-                }
+                update.UpdateSummary(table, user.UserName);
+
             }
         }
     }

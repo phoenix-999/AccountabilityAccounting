@@ -254,6 +254,8 @@ namespace AccountabilityAccounting.DataProviderService {
         System.Threading.Tasks.Task<System.Data.DataTable> GetDataAsync(AccountabilityAccounting.DataProviderService.Selector selector, AccountabilityAccounting.DataProviderService.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateData", ReplyAction="http://tempuri.org/IDataProvider/UpdateDataResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.IdentityModel.Tokens.SecurityTokenException), Action="http://tempuri.org/IDataProvider/UpdateDataSecurityTokenExceptionFault", Name="SecurityTokenException", Namespace="http://schemas.datacontract.org/2004/07/System.IdentityModel.Tokens")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountabilityAccounting.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/UpdateDataDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/AuthenticationService")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         void UpdateData(AccountabilityAccounting.DataProviderService.Updater updater, System.Data.DataTable table, AccountabilityAccounting.DataProviderService.User user);
         

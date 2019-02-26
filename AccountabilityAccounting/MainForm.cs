@@ -13,11 +13,15 @@ using System.IdentityModel.Tokens;
 using System.ServiceModel;
 using System.Data;
 using System.Globalization;
+using NLog;
 
 namespace AccountabilityAccounting
 {
+
     public partial class MainForm : Form
     {
+        protected static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
         DataProviderService.DataProviderClient dataProviderClient;
 
         DataTable tableDataGridViewMainTab;
@@ -64,13 +68,11 @@ namespace AccountabilityAccounting
             catch (FaultException<SecurityTokenException> ex)
             {
                 MessageBox.Show("Вход в программу не выполнен", "Ошибка входа", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
 
             }
             catch (FaultException<DataProviderService.DbException> ex)
             {
-                MessageBox.Show("Ошибка в работе с базой данных. Обратитесть к администратору.", "Ошибка входа", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
+                MessageBox.Show("Ошибка в работе с базой данных. Обратитесть к администратору.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
         }
@@ -148,15 +150,18 @@ namespace AccountabilityAccounting
             catch (FaultException<SecurityTokenException> ex)
             {
                 MessageBox.Show("Вход в программу не выполнен", "Ошибка входа", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
-
             }
             catch (FaultException<DataProviderService.DbException> ex)
             {
-                MessageBox.Show("Ошибка в работе с базой данных. Обратитесть к администратору.", "Ошибка входа", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
-
+                MessageBox.Show("Ошибка в работе с базой данных. Обратитесть к администратору.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch(CommunicationException ex)
+            {
+                Log.Error("Detail: {1}",  ex.ToString());
+                MessageBox.Show("Ошибка обращения к серверу. Обратитесь к администартору", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
     }
 }

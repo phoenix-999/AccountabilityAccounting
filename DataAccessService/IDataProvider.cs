@@ -21,6 +21,8 @@ namespace DataAccessService
 
         [OperationContract]
         [TransactionFlow(TransactionFlowOption.Allowed)]
+        [FaultContract(typeof(SecurityTokenException))]
+        [FaultContract(typeof(AuthenticationService.DbException))]
         void UpdateData(Updater updater, DataTable table, AuthenticationService.User user);
     }
 }
