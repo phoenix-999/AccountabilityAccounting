@@ -55,7 +55,7 @@ namespace AccountabilityAccounting
 
                 dataGridViewMainTab.Columns["Сумма"].DefaultCellStyle.Format = string.Format("C2", new CultureInfo("uk-UA"));
 
-                dataGridViewMainTab.CellDoubleClick += (ob, ev) => { new EditRowMainTab(dataGridViewMainTab.CurrentRow).Show(); };
+                dataGridViewMainTab.CellDoubleClick += (ob, ev) => { new EditRowMainTab(dataGridViewMainTab.CurrentRow, tableDataGridViewMainTab).Show(); };
 
                 this.btnNewString.Click += new System.EventHandler(this.btnNewString_Click);
 

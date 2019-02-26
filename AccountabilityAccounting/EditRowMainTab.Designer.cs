@@ -35,7 +35,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.tbProject = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.tbAccounting = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tbItem = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -44,6 +43,7 @@
             this.tbSum = new System.Windows.Forms.TextBox();
             this.btCancel = new System.Windows.Forms.Button();
             this.btAccept = new System.Windows.Forms.Button();
+            this.cbAccounting = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -106,13 +106,6 @@
             this.label4.Size = new System.Drawing.Size(95, 17);
             this.label4.TabIndex = 6;
             this.label4.Text = "Подотчетник";
-            // 
-            // tbAccounting
-            // 
-            this.tbAccounting.Location = new System.Drawing.Point(318, 54);
-            this.tbAccounting.Name = "tbAccounting";
-            this.tbAccounting.Size = new System.Drawing.Size(384, 20);
-            this.tbAccounting.TabIndex = 7;
             // 
             // label5
             // 
@@ -185,11 +178,20 @@
             this.btAccept.UseVisualStyleBackColor = true;
             this.btAccept.Click += new System.EventHandler(this.btAccept_Click);
             // 
+            // cbAccounting
+            // 
+            this.cbAccounting.FormattingEnabled = true;
+            this.cbAccounting.Location = new System.Drawing.Point(318, 49);
+            this.cbAccounting.Name = "cbAccounting";
+            this.cbAccounting.Size = new System.Drawing.Size(384, 21);
+            this.cbAccounting.TabIndex = 16;
+            // 
             // EditRowMainTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(718, 262);
+            this.Controls.Add(this.cbAccounting);
             this.Controls.Add(this.btAccept);
             this.Controls.Add(this.btCancel);
             this.Controls.Add(this.tbSum);
@@ -198,7 +200,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.tbItem);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.tbAccounting);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tbProject);
             this.Controls.Add(this.label3);
@@ -223,7 +224,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbProject;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox tbAccounting;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tbItem;
         private System.Windows.Forms.Label label6;
@@ -232,5 +232,6 @@
         private System.Windows.Forms.TextBox tbSum;
         private System.Windows.Forms.Button btCancel;
         private System.Windows.Forms.Button btAccept;
+        private System.Windows.Forms.ComboBox cbAccounting;
     }
 }

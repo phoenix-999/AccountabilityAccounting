@@ -15,16 +15,21 @@ namespace AccountabilityAccounting
     public partial class EditRowMainTab : Form
     {
         DataGridViewRow Row { get; set; }
-        public EditRowMainTab(DataGridViewRow row)
+
+        DataTable Table { get; set; }
+        public EditRowMainTab(DataGridViewRow row, DataTable table)
         {
             InitializeComponent();
 
             this.Row = row;
+            this.Table = table;
+
+            SetComboboxOptions(cbAccounting, Table, "Подотчетник");
 
             tbDate.Text = Row.Cells["Дата"].Value.ToString();
             tbSign.Text = Row.Cells["Знак"].Value.ToString();
             tbProject.Text = Row.Cells["Проект"].Value.ToString();
-            tbAccounting.Text = Row.Cells["Подотчетник"].Value.ToString();
+            cbAccounting.Text = Row.Cells["Подотчетник"].Value.ToString();
             tbItem.Text = Row.Cells["Статья"].Value.ToString();
             tbTranscriptItem.Text = Row.Cells["Расшифровка"].Value.ToString();
             tbSum.Text = Row.Cells["Сумма"].Value.ToString();
@@ -40,12 +45,27 @@ namespace AccountabilityAccounting
             Row.Cells["Дата"].Value = tbDate.Text;
             Row.Cells["Знак"].Value = tbSign.Text;
             Row.Cells["Проект"].Value = tbProject.Text;
-            Row.Cells["Подотчетник"].Value = tbAccounting.Text;
+            Row.Cells["Подотчетник"].Value = cbAccounting.Text;
             Row.Cells["Статья"].Value = tbItem.Text;
             Row.Cells["Расшифровка"].Value = tbTranscriptItem.Text;
             Row.Cells["Сумма"].Value = tbSum.Text;
 
             this.Close();
+        }
+
+        private void SetComboboxOptions(ComboBox comboBox, DataTable table, string columnName)
+        {
+            HashSet<string> options = new HashSet<string>();
+
+            foreach(DataRow  row in table.Rows)
+            {
+                options.Add(row[columnName].ToString());
+            }
+
+            foreach(string item in options)
+            {
+                comboBox.Items.Add(item);
+            }
         }
     }
 }
