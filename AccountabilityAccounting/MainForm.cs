@@ -134,5 +134,29 @@ namespace AccountabilityAccounting
                 tableDataGridViewMainTab.Rows[index].Delete();
             }          
         }
+
+        private void tbSendToDB_Click(object sender, EventArgs e)
+        {
+            if (dataProviderClient == null)
+                return;
+            DataProviderService.Updater updater = new Updater();
+            updater.UpdaterOption = UpdaterOptions.UpdateSummary;
+            try
+            {
+                dataProviderClient.UpdateData(updater, tableDataGridViewMainTab, (DataProviderService.User)AuthenticationService.User.Current);
+            }
+            catch (FaultException<SecurityTokenException> ex)
+            {
+                MessageBox.Show("Вход в программу не выполнен", "Ошибка входа", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+
+            }
+            catch (FaultException<DataProviderService.DbException> ex)
+            {
+                MessageBox.Show("Ошибка в работе с базой данных. Обратитесть к администратору.", "Ошибка входа", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+
+            }
+        }
     }
 }

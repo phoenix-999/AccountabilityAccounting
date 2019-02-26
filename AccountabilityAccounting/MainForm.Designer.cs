@@ -37,6 +37,7 @@
             this.lbCount = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnDeleteString = new System.Windows.Forms.Button();
             this.btnNewString = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnMainTabGetData = new System.Windows.Forms.Button();
@@ -45,7 +46,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btnDeleteString = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tbSendToDB = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageMain.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -54,6 +56,7 @@
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -139,6 +142,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.groupBox3);
             this.panel2.Controls.Add(this.groupBox2);
             this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -158,6 +162,16 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Строки";
+            // 
+            // btnDeleteString
+            // 
+            this.btnDeleteString.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnDeleteString.Location = new System.Drawing.Point(98, 14);
+            this.btnDeleteString.Name = "btnDeleteString";
+            this.btnDeleteString.Size = new System.Drawing.Size(84, 40);
+            this.btnDeleteString.TabIndex = 1;
+            this.btnDeleteString.Text = "Удалить строку";
+            this.btnDeleteString.UseVisualStyleBackColor = true;
             // 
             // btnNewString
             // 
@@ -241,15 +255,24 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // btnDeleteString
+            // groupBox3
             // 
-            this.btnDeleteString.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnDeleteString.Location = new System.Drawing.Point(98, 14);
-            this.btnDeleteString.Name = "btnDeleteString";
-            this.btnDeleteString.Size = new System.Drawing.Size(84, 40);
-            this.btnDeleteString.TabIndex = 1;
-            this.btnDeleteString.Text = "Удалить строку";
-            this.btnDeleteString.UseVisualStyleBackColor = true;
+            this.groupBox3.Controls.Add(this.tbSendToDB);
+            this.groupBox3.Location = new System.Drawing.Point(1107, 3);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(157, 56);
+            this.groupBox3.TabIndex = 2;
+            this.groupBox3.TabStop = false;
+            // 
+            // tbSendToDB
+            // 
+            this.tbSendToDB.Location = new System.Drawing.Point(6, 11);
+            this.tbSendToDB.Name = "tbSendToDB";
+            this.tbSendToDB.Size = new System.Drawing.Size(145, 39);
+            this.tbSendToDB.TabIndex = 0;
+            this.tbSendToDB.Text = "Отправить изменения на сервер";
+            this.tbSendToDB.UseVisualStyleBackColor = true;
+            this.tbSendToDB.Click += new System.EventHandler(this.tbSendToDB_Click);
             // 
             // MainForm
             // 
@@ -272,6 +295,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -296,5 +320,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnNewString;
         private System.Windows.Forms.Button btnDeleteString;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button tbSendToDB;
     }
 }
