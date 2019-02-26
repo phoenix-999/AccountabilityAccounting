@@ -180,6 +180,7 @@
             // 
             // cbAccounting
             // 
+            this.cbAccounting.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbAccounting.FormattingEnabled = true;
             this.cbAccounting.Location = new System.Drawing.Point(318, 49);
             this.cbAccounting.Name = "cbAccounting";
