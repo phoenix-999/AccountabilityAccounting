@@ -141,6 +141,13 @@ namespace AccountabilityAccounting
         {
             if (dataProviderClient == null)
                 return;
+
+            if(!CheckEmptyValues(dataGridViewMainTab))
+            {
+                MessageBox.Show("Заполните все поля", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             DataProviderService.Updater updater = new Updater();
             updater.UpdaterOption = UpdaterOptions.UpdateSummary;
             try
@@ -161,6 +168,29 @@ namespace AccountabilityAccounting
                 MessageBox.Show("Ошибка обращения к серверу. Обратитесь к администартору", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private bool CheckEmptyValues(DataGridView grid)
+        {
+            bool result = true;
+            for(int rowIndex = 0; rowIndex < grid.RowCount; rowIndex++)
+            {
+                var row = grid.Rows[rowIndex];
+                for(int columnIndex = 0; columnIndex < grid.ColumnCount; columnIndex++)
+                {
+                    if(row.Cells[columnIndex].Value.ToString() == string.Empty)
+                    {
+                        row.Cells[columnIndex].Style.BackColor = Color.Red;
+                        result = false;
+                    }
+                    else
+                    {
+                        row.Cells[columnIndex].Style.BackColor = Color.White;
+                    }
+                }
+            }
+
+            return result;
+        } 
 
 
     }
