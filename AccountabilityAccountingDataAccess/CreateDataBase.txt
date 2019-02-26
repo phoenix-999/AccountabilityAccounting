@@ -380,14 +380,14 @@ END
 GO
 --------------------------------------------------------------------------------
 
-CREATE PROCEDURE insert_summary
-	@summaryDate datetime,
+CREATE PROCEDURE [dbo].[insert_summary]
+	@summaryDate varchar,
 	@projectName nvarchar,
 	@itemDescription nvarchar,
 	@transcriptItemDescription nvarchar,
 	@accountableName nvarchar,
 	@sign char(1),
-	@summa int,
+	@summa nvarchar,
 	@userName nvarchar
 AS
 BEGIN
@@ -405,14 +405,16 @@ BEGIN
 
 	insert into Summary (SummaryDate, IdProject, IdItem, IdTranscriptItem, IdAccounttable, Sign, Summa, IdUser) values
 	(
-		@summaryDate,
+		convert(datetime, @summaryDate, 120),
 		@idProject,
 		@idItem,
 		@idTranscriptItem,
 		@idAccountable,
 		@sign,
-		@summa,
+		case
+		when @summa is not null then cast(convert(float, @summa, 2) * 100 as int)
+		else 0
+		end,
 		@idUser
 	)
 END
-GO
