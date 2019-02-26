@@ -54,6 +54,10 @@ namespace AccountabilityAccounting
                 dataGridViewMainTab.SelectionChanged += DataGridViewMainTab_SelectionChanged;
 
                 dataGridViewMainTab.Columns["Сумма"].DefaultCellStyle.Format = string.Format("C2", new CultureInfo("uk-UA"));
+
+                dataGridViewMainTab.CellDoubleClick += (ob, ev) => { new EditRowMainTab(dataGridViewMainTab.CurrentRow).Show(); };
+
+                this.btnNewString.Click += new System.EventHandler(this.btnNewString_Click);
             }
             catch (FaultException<SecurityTokenException> ex)
             {
@@ -102,6 +106,11 @@ namespace AccountabilityAccounting
             {
                 lbSum.Text = string.Empty;
             }
+        }
+
+        private void btnNewString_Click(object sender, EventArgs e)
+        {
+            DataRow row = tableDataGridViewMainTab.Rows.Add();
         }
     }
 }
