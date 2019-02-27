@@ -14,24 +14,23 @@ using NLog;
 
 namespace AccountabilityAccounting
 {
-    public partial class SignsForm : Form
+    public partial class ProjectsForm : Form
     {
         private DataProviderService.DataProviderClient DataProviderClient { get; set; }
         EditRowMainTab EditRowMainTabSourceForm { get; set; }
-        DataTable SignsTable { get; set; }
+        DataTable ProjetcsTable { get; set; }
 
         protected static readonly Logger Log = LogManager.GetCurrentClassLogger();
-
-        public SignsForm(DataProviderService.DataProviderClient dataProviderClient, Form sourceForm)
+        public ProjectsForm(DataProviderService.DataProviderClient dataProviderClient, Form sourceForm)
         {
             InitializeComponent();
-            this.SignsTable = new DataTable();
+
+            this.ProjetcsTable = new DataTable();
             this.DataProviderClient = dataProviderClient;
             this.EditRowMainTabSourceForm = sourceForm as EditRowMainTab;
 
-            EditRowMainTabSourceForm.CreateChildrenGrid(this, SelectorOptions.GetSign, this.dataGridViewSigns, EditRowMainTabSourceForm.tbSign);
-        }
+            EditRowMainTabSourceForm.CreateChildrenGrid(this, SelectorOptions.GetProjects, this.grid, EditRowMainTabSourceForm.tbProject);
 
-       
+        }
     }
 }

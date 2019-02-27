@@ -158,7 +158,6 @@ namespace AccountabilityAccounting
                     using (TransactionScope transaction = new TransactionScope())
                     {
                         dataProviderClient.UpdateData(updater, tableDataGridViewMainTab, (DataProviderService.User)AuthenticationService.User.Current);
-                        MessageBox.Show(Transaction.Current.TransactionInformation.DistributedIdentifier.ToString());
                         transaction.Complete();
                     }                 
                 }

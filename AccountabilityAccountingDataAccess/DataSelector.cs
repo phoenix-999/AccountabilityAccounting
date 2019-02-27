@@ -74,5 +74,31 @@ namespace AccountabilityAccountingDataAccess
 
             return table;
         }
+
+        public DataTable GetProjects()
+        {
+            DataTable table = new DataTable("Signs");
+            SqlConnection conn;
+            SqlDataAdapter adapter;
+
+            using (conn = new SqlConnection())
+            {
+                conn.ConnectionString = DBAccess.AccountabilityAccountingConnectionString;
+                SqlCommand command = new SqlCommand();
+                command.Connection = conn;
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "get_projects";
+
+                adapter = new SqlDataAdapter();
+                adapter.SelectCommand = command;
+
+                conn.Open();
+
+                adapter.Fill(table);
+            }
+
+
+            return table;
+        }
     }
 }

@@ -83,6 +83,9 @@ namespace AccountabilityAccounting.DataProviderService {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         GetSign = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        GetProjects = 2,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]

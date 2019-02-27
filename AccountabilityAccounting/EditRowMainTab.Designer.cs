@@ -74,6 +74,7 @@
             // 
             this.tbSign.Location = new System.Drawing.Point(155, 48);
             this.tbSign.Name = "tbSign";
+            this.tbSign.ReadOnly = true;
             this.tbSign.Size = new System.Drawing.Size(42, 20);
             this.tbSign.TabIndex = 3;
             // 
@@ -91,6 +92,7 @@
             // 
             this.tbProject.Location = new System.Drawing.Point(375, 16);
             this.tbProject.Name = "tbProject";
+            this.tbProject.ReadOnly = true;
             this.tbProject.Size = new System.Drawing.Size(350, 20);
             this.tbProject.TabIndex = 5;
             // 
@@ -199,6 +201,7 @@
             this.btnProjects.TabIndex = 19;
             this.btnProjects.Text = "...";
             this.btnProjects.UseVisualStyleBackColor = true;
+            this.btnProjects.Click += new System.EventHandler(this.btnProjects_Click);
             // 
             // btnAccountings
             // 
@@ -266,7 +269,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox tbProject;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tbItem;
@@ -283,5 +285,6 @@
         private System.Windows.Forms.Button btnItems;
         private System.Windows.Forms.Button btnSigns;
         internal System.Windows.Forms.TextBox tbSign;
+        public System.Windows.Forms.TextBox tbProject;
     }
 }

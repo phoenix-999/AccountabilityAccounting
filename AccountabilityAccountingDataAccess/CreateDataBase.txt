@@ -414,3 +414,39 @@ BEGIN
 		@idUser
 	)
 END
+
+--------------------------------------------------
+
+USE [AccountabilityAccounting]
+GO
+
+/****** Object:  StoredProcedure [dbo].[get_signs]    Script Date: 27.02.2019 14:25:35 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[get_signs]
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	select distinct
+		Sign
+	from
+		Summary
+END
+GO
+
+
+---------------------------------------------------------------------------------

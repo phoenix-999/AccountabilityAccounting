@@ -79,6 +79,10 @@ namespace DataAccessService
             {
                 table = select.GetSigns();
             }
+            else if (selector.SelectorOption == SelectorOptions.GetProjects)
+            {
+                table = select.GetProjects();
+            }
 
             return table;
         }

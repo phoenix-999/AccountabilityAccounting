@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data;
 using System.Globalization;
+using AccountabilityAccounting.DataProviderService;
+using System.ServiceModel;
+using System.IdentityModel.Tokens;
 using NLog;
 
 namespace AccountabilityAccounting
@@ -106,6 +109,38 @@ namespace AccountabilityAccounting
             }
 
             return result;
+        }
+
+        public void CreateChildrenGrid(Form form, DataProviderService.SelectorOptions selectorOptions, DataGridView grid, TextBox tb)
+        {
+            DataProviderService.Selector selector = new DataProviderService.Selector();
+            selector.SelectorOption = selectorOptions;
+            try
+            {
+                DataTable table = DataProviderClient.GetData(selector, (DataProviderService.User)AuthenticationService.User.Current);
+                grid.DataSource = table;
+                grid.CellDoubleClick += (ob, ea) => { tb.Text = grid.CurrentCell.Value.ToString(); form.Close(); };
+            }
+            catch (FaultException<SecurityTokenException> ex)
+            {
+                MessageBox.Show("Вход в программу не выполнен", "Ошибка входа", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            catch (FaultException<DataProviderService.DbException> ex)
+            {
+                MessageBox.Show("Ошибка в работе с базой данных. Обратитесть к администратору.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (CommunicationException ex)
+            {
+                Log.Error("Detail: {1}", ex.ToString());
+                MessageBox.Show("Ошибка обращения к серверу. Обратитесь к администартору", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnProjects_Click(object sender, EventArgs e)
+        {
+            ProjectsForm projForm = new ProjectsForm(DataProviderClient, this);
+            projForm.Show();
         }
     }
 }
