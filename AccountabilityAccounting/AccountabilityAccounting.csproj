@@ -90,10 +90,10 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="ProjectsForm.cs">
+    <Compile Include="EditRowMainTabForms\ProjectsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProjectsForm.Designer.cs">
+    <Compile Include="EditRowMainTabForms\ProjectsForm.Designer.cs">
       <DependentUpon>ProjectsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -107,10 +107,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="SignsForm.cs">
+    <Compile Include="EditRowMainTabForms\SignsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SignsForm.Designer.cs">
+    <Compile Include="EditRowMainTabForms\SignsForm.Designer.cs">
       <DependentUpon>SignsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
@@ -123,7 +123,7 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProjectsForm.resx">
+    <EmbeddedResource Include="EditRowMainTabForms\ProjectsForm.resx">
       <DependentUpon>ProjectsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -135,7 +135,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SignsForm.resx">
+    <EmbeddedResource Include="EditRowMainTabForms\SignsForm.resx">
       <DependentUpon>SignsForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
