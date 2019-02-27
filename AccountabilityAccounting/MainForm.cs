@@ -60,7 +60,7 @@ namespace AccountabilityAccounting
 
                 dataGridViewMainTab.Columns["Сумма"].DefaultCellStyle.Format = string.Format("C2", new CultureInfo("uk-UA"));
 
-                dataGridViewMainTab.CellDoubleClick += (ob, ev) => { new EditRowMainTab(dataGridViewMainTab.CurrentRow, tableDataGridViewMainTab).Show(); };
+                dataGridViewMainTab.CellDoubleClick += (ob, ev) => { new EditRowMainTab(dataGridViewMainTab.CurrentRow, tableDataGridViewMainTab, dataProviderClient).Show(); };
 
                 this.btnNewString.Click += new System.EventHandler(this.btnNewString_Click);
 
@@ -152,32 +152,30 @@ namespace AccountabilityAccounting
                         
             DataProviderService.Updater updater = new Updater();
             updater.UpdaterOption = UpdaterOptions.UpdateSummary;
-            using (TransactionScope transaction = new TransactionScope())
-            {
+           
                 try
                 {
-                    dataProviderClient.UpdateData(updater, tableDataGridViewMainTab, (DataProviderService.User)AuthenticationService.User.Current);
-                    MessageBox.Show(Transaction.Current.TransactionInformation.DistributedIdentifier.ToString());
-                    transaction.Complete();                    
+                    using (TransactionScope transaction = new TransactionScope())
+                    {
+                        dataProviderClient.UpdateData(updater, tableDataGridViewMainTab, (DataProviderService.User)AuthenticationService.User.Current);
+                        MessageBox.Show(Transaction.Current.TransactionInformation.DistributedIdentifier.ToString());
+                        transaction.Complete();
+                    }                 
                 }
                 catch (FaultException<SecurityTokenException> ex)
                 {
-                    Transaction.Current.Rollback();
                     MessageBox.Show("Вход в программу не выполнен", "Ошибка входа", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     
                 }
                 catch (FaultException<DataProviderService.DbException> ex)
                 {
-                    Transaction.Current.Rollback();
                     MessageBox.Show("Ошибка в работе с базой данных. Обратитесть к администратору.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 catch (CommunicationException ex)
                 {
-                    Transaction.Current.Rollback();
                     Log.Error("Detail: {1}", ex.ToString());
                     MessageBox.Show("Ошибка обращения к серверу. Обратитесь к администартору", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
         }
 
         private bool CheckEmptyValues(DataGridView grid)
@@ -206,6 +204,9 @@ namespace AccountabilityAccounting
             return result;
         }
 
-
+        private void DataError_EventHandler(object ob, EventArgs e)
+        {
+            MessageBox.Show("Ошибка при заполнении полей данных. Изменения отменены.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 }

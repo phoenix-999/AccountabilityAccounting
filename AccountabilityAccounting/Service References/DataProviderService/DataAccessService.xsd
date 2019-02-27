@@ -11,6 +11,7 @@
   <xs:simpleType name="SelectorOptions">
     <xs:restriction base="xs:string">
       <xs:enumeration value="GetSummary" />
+      <xs:enumeration value="GetSign" />
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="SelectorOptions" nillable="true" type="tns:SelectorOptions" />

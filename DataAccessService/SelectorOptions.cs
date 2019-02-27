@@ -9,6 +9,7 @@ namespace DataAccessService
     
     public enum SelectorOptions
     {
-        GetSummary
+        GetSummary,
+        GetSign
     }
 }

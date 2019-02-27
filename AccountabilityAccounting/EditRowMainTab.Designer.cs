@@ -154,6 +154,8 @@
             this.tbSum.Name = "tbSum";
             this.tbSum.Size = new System.Drawing.Size(136, 20);
             this.tbSum.TabIndex = 13;
+            this.tbSum.Text = "0";
+            this.tbSum.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btCancel
             // 
@@ -224,6 +226,7 @@
             this.btnSigns.TabIndex = 22;
             this.btnSigns.Text = "...";
             this.btnSigns.UseVisualStyleBackColor = true;
+            this.btnSigns.Click += new System.EventHandler(this.btnSigns_Click);
             // 
             // EditRowMainTab
             // 
@@ -262,7 +265,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox tbSign;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbProject;
         private System.Windows.Forms.Label label4;
@@ -280,5 +282,6 @@
         private System.Windows.Forms.Button btnAccountings;
         private System.Windows.Forms.Button btnItems;
         private System.Windows.Forms.Button btnSigns;
+        internal System.Windows.Forms.TextBox tbSign;
     }
 }

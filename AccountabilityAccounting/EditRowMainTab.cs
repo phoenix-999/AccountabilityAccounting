@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data;
 using System.Globalization;
+using NLog;
 
 namespace AccountabilityAccounting
 {
@@ -17,12 +18,18 @@ namespace AccountabilityAccounting
         DataGridViewRow Row { get; set; }
 
         DataTable Table { get; set; }
-        public EditRowMainTab(DataGridViewRow row, DataTable table)
+
+        protected static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
+        private DataProviderService.DataProviderClient DataProviderClient;
+
+        public EditRowMainTab(DataGridViewRow row, DataTable table, DataProviderService.DataProviderClient dataProviderClient)
         {
             InitializeComponent();
 
             this.Row = row;
             this.Table = table;
+            this.DataProviderClient = dataProviderClient;
 
 
             dtpDate.Text = Row.Cells["Дата"].Value.ToString();
@@ -41,6 +48,11 @@ namespace AccountabilityAccounting
 
         private void btAccept_Click(object sender, EventArgs e)
         {
+            if(!CheckEmtyValues())
+            {
+                return;
+            }
+
             Row.Cells["Дата"].Value = dtpDate.Text;
             Row.Cells["Приход/Расход"].Value = tbSign.Text;
             Row.Cells["Проект"].Value = tbProject.Text;
@@ -50,6 +62,7 @@ namespace AccountabilityAccounting
             Row.Cells["Сумма"].Value = tbSum.Text;
 
             this.Close();
+
         }
 
         private void SetComboboxOptions(ComboBox comboBox, DataTable table, string columnName)
@@ -67,5 +80,32 @@ namespace AccountabilityAccounting
             }
         }
 
+        private void btnSigns_Click(object sender, EventArgs e)
+        {
+            SignsForm signForm = new SignsForm(DataProviderClient, this);
+            signForm.Show();
+        }
+
+        private bool CheckEmtyValues()
+        {
+            bool result = true; ;
+
+            if(this.tbSum.Text == string.Empty)
+            {
+                this.tbSum.BackColor = Color.Red;
+                result = false;
+            }
+            else
+            {
+                this.tbSum.BackColor = Color.White;
+            }
+
+            if(!result)
+            {
+                MessageBox.Show("Вы заполнили не все обязательные поля.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return result;
+        }
     }
 }

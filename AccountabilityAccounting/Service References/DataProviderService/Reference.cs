@@ -80,6 +80,9 @@ namespace AccountabilityAccounting.DataProviderService {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         GetSummary = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        GetSign = 1,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]

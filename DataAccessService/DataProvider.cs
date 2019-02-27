@@ -75,6 +75,10 @@ namespace DataAccessService
             {
                 table = select.GetSummary(selector.Predicates["dateStart"], selector.Predicates["dateEnd"]);                
             }
+            else if(selector.SelectorOption == SelectorOptions.GetSign)
+            {
+                table = select.GetSigns();
+            }
 
             return table;
         }
