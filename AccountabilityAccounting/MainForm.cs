@@ -188,6 +188,9 @@ namespace AccountabilityAccounting
                 var row = grid.Rows[rowIndex];
                 for(int columnIndex = 0; columnIndex < grid.ColumnCount; columnIndex++)
                 {
+                    if (row.Cells[columnIndex].OwningColumn.Name == "Расшифровка")
+                        continue;
+
                     if(row.Cells[columnIndex].Value.ToString() == string.Empty)
                     {
                         row.Cells[columnIndex].Style.BackColor = Color.Red;

@@ -362,7 +362,7 @@ BEGIN
     -- Insert statements for procedure here
 	SELECT
 		s.SummaryDate as 'Дата',
-		s.Sign as 'Знак',
+		s.Sign as 'Приход/Расход',
 		p.ProjectName as 'Проект',
 		a.AccountableName as 'Подотчетник',
 		i.ItemDescription as 'Статья',

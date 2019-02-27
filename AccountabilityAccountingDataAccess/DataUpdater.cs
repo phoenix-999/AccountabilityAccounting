@@ -41,7 +41,7 @@ namespace AccountabilityAccountingDataAccess
             command.Parameters.Add("@itemDescription", SqlDbType.NChar, 200, "Статья");
             command.Parameters.Add("@transcriptItemDescription", SqlDbType.NChar, 200, "Расшифровка");
             command.Parameters.Add("@accountableName", SqlDbType.NChar, 200, "Подотчетник");
-            command.Parameters.Add("@sign", SqlDbType.Char, 1, "Знак");
+            command.Parameters.Add("@sign", SqlDbType.Char, 1, "Приход/Расход");
             command.Parameters.Add("@summa", SqlDbType.NChar, 200, "Сумма");
 
             SqlParameter userNameParam = new SqlParameter();

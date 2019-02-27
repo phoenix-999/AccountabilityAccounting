@@ -27,7 +27,7 @@ namespace AccountabilityAccounting
             SetComboboxOptions(cbAccounting, Table, "Подотчетник");
 
             tbDate.Text = Row.Cells["Дата"].Value.ToString();
-            tbSign.Text = Row.Cells["Знак"].Value.ToString();
+            tbSign.Text = Row.Cells["Приход/Расход"].Value.ToString();
             tbProject.Text = Row.Cells["Проект"].Value.ToString();
             cbAccounting.Text = Row.Cells["Подотчетник"].Value.ToString();
             tbItem.Text = Row.Cells["Статья"].Value.ToString();
@@ -43,7 +43,7 @@ namespace AccountabilityAccounting
         private void btAccept_Click(object sender, EventArgs e)
         {
             Row.Cells["Дата"].Value = tbDate.Text;
-            Row.Cells["Знак"].Value = tbSign.Text;
+            Row.Cells["Приход/Расход"].Value = tbSign.Text;
             Row.Cells["Проект"].Value = tbProject.Text;
             Row.Cells["Подотчетник"].Value = cbAccounting.Text;
             Row.Cells["Статья"].Value = tbItem.Text;
