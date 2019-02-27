@@ -153,6 +153,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.tbSendToDB);
             this.groupBox3.Location = new System.Drawing.Point(1107, 3);
             this.groupBox3.Name = "groupBox3";
@@ -162,6 +163,7 @@
             // 
             // tbSendToDB
             // 
+            this.tbSendToDB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tbSendToDB.Location = new System.Drawing.Point(6, 11);
             this.tbSendToDB.Name = "tbSendToDB";
             this.tbSendToDB.Size = new System.Drawing.Size(145, 39);
@@ -243,7 +245,6 @@
             this.dtBegin.Name = "dtBegin";
             this.dtBegin.Size = new System.Drawing.Size(168, 20);
             this.dtBegin.TabIndex = 2;
-            this.dtBegin.Value = new System.DateTime(2019, 2, 26, 0, 0, 0, 0);
             // 
             // label2
             // 

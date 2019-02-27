@@ -24,12 +24,11 @@ namespace AccountabilityAccounting
             this.Row = row;
             this.Table = table;
 
-            SetComboboxOptions(cbAccounting, Table, "Подотчетник");
 
-            tbDate.Text = Row.Cells["Дата"].Value.ToString();
+            dtpDate.Text = Row.Cells["Дата"].Value.ToString();
             tbSign.Text = Row.Cells["Приход/Расход"].Value.ToString();
             tbProject.Text = Row.Cells["Проект"].Value.ToString();
-            cbAccounting.Text = Row.Cells["Подотчетник"].Value.ToString();
+            tbAccounting.Text = Row.Cells["Подотчетник"].Value.ToString();
             tbItem.Text = Row.Cells["Статья"].Value.ToString();
             tbTranscriptItem.Text = Row.Cells["Расшифровка"].Value.ToString();
             tbSum.Text = Row.Cells["Сумма"].Value.ToString();
@@ -42,10 +41,10 @@ namespace AccountabilityAccounting
 
         private void btAccept_Click(object sender, EventArgs e)
         {
-            Row.Cells["Дата"].Value = tbDate.Text;
+            Row.Cells["Дата"].Value = dtpDate.Text;
             Row.Cells["Приход/Расход"].Value = tbSign.Text;
             Row.Cells["Проект"].Value = tbProject.Text;
-            Row.Cells["Подотчетник"].Value = cbAccounting.Text;
+            Row.Cells["Подотчетник"].Value = tbAccounting.Text;
             Row.Cells["Статья"].Value = tbItem.Text;
             Row.Cells["Расшифровка"].Value = tbTranscriptItem.Text;
             Row.Cells["Сумма"].Value = tbSum.Text;
@@ -67,5 +66,6 @@ namespace AccountabilityAccounting
                 comboBox.Items.Add(item);
             }
         }
+
     }
 }

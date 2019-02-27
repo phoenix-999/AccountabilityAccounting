@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.tbDate = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tbSign = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -43,7 +42,12 @@
             this.tbSum = new System.Windows.Forms.TextBox();
             this.btCancel = new System.Windows.Forms.Button();
             this.btAccept = new System.Windows.Forms.Button();
-            this.cbAccounting = new System.Windows.Forms.ComboBox();
+            this.dtpDate = new System.Windows.Forms.DateTimePicker();
+            this.tbAccounting = new System.Windows.Forms.TextBox();
+            this.btnProjects = new System.Windows.Forms.Button();
+            this.btnAccountings = new System.Windows.Forms.Button();
+            this.btnItems = new System.Windows.Forms.Button();
+            this.btnSigns = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -56,26 +60,19 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Дата";
             // 
-            // tbDate
-            // 
-            this.tbDate.Location = new System.Drawing.Point(61, 13);
-            this.tbDate.Name = "tbDate";
-            this.tbDate.Size = new System.Drawing.Size(136, 20);
-            this.tbDate.TabIndex = 1;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.Location = new System.Drawing.Point(15, 51);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 17);
+            this.label2.Size = new System.Drawing.Size(137, 17);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Знак";
+            this.label2.Text = "Приход/Расход (+/-)";
             // 
             // tbSign
             // 
-            this.tbSign.Location = new System.Drawing.Point(61, 51);
+            this.tbSign.Location = new System.Drawing.Point(155, 48);
             this.tbSign.Name = "tbSign";
             this.tbSign.Size = new System.Drawing.Size(42, 20);
             this.tbSign.TabIndex = 3;
@@ -84,7 +81,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(256, 16);
+            this.label3.Location = new System.Drawing.Point(303, 19);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 17);
             this.label3.TabIndex = 4;
@@ -92,16 +89,16 @@
             // 
             // tbProject
             // 
-            this.tbProject.Location = new System.Drawing.Point(318, 16);
+            this.tbProject.Location = new System.Drawing.Point(375, 16);
             this.tbProject.Name = "tbProject";
-            this.tbProject.Size = new System.Drawing.Size(384, 20);
+            this.tbProject.Size = new System.Drawing.Size(350, 20);
             this.tbProject.TabIndex = 5;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(217, 54);
+            this.label4.Location = new System.Drawing.Point(264, 53);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(95, 17);
             this.label4.TabIndex = 6;
@@ -111,7 +108,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(251, 84);
+            this.label5.Location = new System.Drawing.Point(298, 89);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(61, 17);
             this.label5.TabIndex = 8;
@@ -119,16 +116,16 @@
             // 
             // tbItem
             // 
-            this.tbItem.Location = new System.Drawing.Point(318, 84);
+            this.tbItem.Location = new System.Drawing.Point(375, 84);
             this.tbItem.Name = "tbItem";
-            this.tbItem.Size = new System.Drawing.Size(384, 20);
+            this.tbItem.Size = new System.Drawing.Size(350, 20);
             this.tbItem.TabIndex = 9;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(212, 116);
+            this.label6.Location = new System.Drawing.Point(259, 118);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(100, 17);
             this.label6.TabIndex = 10;
@@ -136,9 +133,9 @@
             // 
             // tbTranscriptItem
             // 
-            this.tbTranscriptItem.Location = new System.Drawing.Point(318, 116);
+            this.tbTranscriptItem.Location = new System.Drawing.Point(375, 115);
             this.tbTranscriptItem.Name = "tbTranscriptItem";
-            this.tbTranscriptItem.Size = new System.Drawing.Size(384, 20);
+            this.tbTranscriptItem.Size = new System.Drawing.Size(350, 20);
             this.tbTranscriptItem.TabIndex = 11;
             // 
             // label7
@@ -178,21 +175,67 @@
             this.btAccept.UseVisualStyleBackColor = true;
             this.btAccept.Click += new System.EventHandler(this.btAccept_Click);
             // 
-            // cbAccounting
+            // dtpDate
             // 
-            this.cbAccounting.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbAccounting.FormattingEnabled = true;
-            this.cbAccounting.Location = new System.Drawing.Point(318, 49);
-            this.cbAccounting.Name = "cbAccounting";
-            this.cbAccounting.Size = new System.Drawing.Size(384, 21);
-            this.cbAccounting.TabIndex = 16;
+            this.dtpDate.Location = new System.Drawing.Point(61, 10);
+            this.dtpDate.Name = "dtpDate";
+            this.dtpDate.Size = new System.Drawing.Size(136, 20);
+            this.dtpDate.TabIndex = 17;
+            // 
+            // tbAccounting
+            // 
+            this.tbAccounting.Location = new System.Drawing.Point(375, 49);
+            this.tbAccounting.Name = "tbAccounting";
+            this.tbAccounting.Size = new System.Drawing.Size(350, 20);
+            this.tbAccounting.TabIndex = 18;
+            // 
+            // btnProjects
+            // 
+            this.btnProjects.Location = new System.Drawing.Point(731, 16);
+            this.btnProjects.Name = "btnProjects";
+            this.btnProjects.Size = new System.Drawing.Size(41, 20);
+            this.btnProjects.TabIndex = 19;
+            this.btnProjects.Text = "...";
+            this.btnProjects.UseVisualStyleBackColor = true;
+            // 
+            // btnAccountings
+            // 
+            this.btnAccountings.Location = new System.Drawing.Point(731, 48);
+            this.btnAccountings.Name = "btnAccountings";
+            this.btnAccountings.Size = new System.Drawing.Size(41, 22);
+            this.btnAccountings.TabIndex = 20;
+            this.btnAccountings.Text = "...";
+            this.btnAccountings.UseVisualStyleBackColor = true;
+            // 
+            // btnItems
+            // 
+            this.btnItems.Location = new System.Drawing.Point(731, 84);
+            this.btnItems.Name = "btnItems";
+            this.btnItems.Size = new System.Drawing.Size(41, 22);
+            this.btnItems.TabIndex = 21;
+            this.btnItems.Text = "...";
+            this.btnItems.UseVisualStyleBackColor = true;
+            // 
+            // btnSigns
+            // 
+            this.btnSigns.Location = new System.Drawing.Point(203, 48);
+            this.btnSigns.Name = "btnSigns";
+            this.btnSigns.Size = new System.Drawing.Size(35, 22);
+            this.btnSigns.TabIndex = 22;
+            this.btnSigns.Text = "...";
+            this.btnSigns.UseVisualStyleBackColor = true;
             // 
             // EditRowMainTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(718, 262);
-            this.Controls.Add(this.cbAccounting);
+            this.ClientSize = new System.Drawing.Size(784, 262);
+            this.Controls.Add(this.btnSigns);
+            this.Controls.Add(this.btnItems);
+            this.Controls.Add(this.btnAccountings);
+            this.Controls.Add(this.btnProjects);
+            this.Controls.Add(this.tbAccounting);
+            this.Controls.Add(this.dtpDate);
             this.Controls.Add(this.btAccept);
             this.Controls.Add(this.btCancel);
             this.Controls.Add(this.tbSum);
@@ -206,7 +249,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.tbSign);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.tbDate);
             this.Controls.Add(this.label1);
             this.Name = "EditRowMainTab";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -219,7 +261,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbDate;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbSign;
         private System.Windows.Forms.Label label3;
@@ -233,6 +274,11 @@
         private System.Windows.Forms.TextBox tbSum;
         private System.Windows.Forms.Button btCancel;
         private System.Windows.Forms.Button btAccept;
-        private System.Windows.Forms.ComboBox cbAccounting;
+        private System.Windows.Forms.DateTimePicker dtpDate;
+        private System.Windows.Forms.TextBox tbAccounting;
+        private System.Windows.Forms.Button btnProjects;
+        private System.Windows.Forms.Button btnAccountings;
+        private System.Windows.Forms.Button btnItems;
+        private System.Windows.Forms.Button btnSigns;
     }
 }
