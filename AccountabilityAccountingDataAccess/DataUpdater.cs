@@ -19,7 +19,7 @@ namespace AccountabilityAccountingDataAccess
             SqlDataAdapter adapter = new SqlDataAdapter();
             adapter.InsertCommand = CreateInsertCommadSummary(conn, table, userName);
             adapter.UpdateCommand = CreateUpdateCommadSummary(conn, table, userName);
-            adapter.DeleteCommand = null;
+            adapter.DeleteCommand = CreateDeleteCommadSummary(conn, table, userName);
 
             using (conn)
             {
@@ -126,6 +126,25 @@ namespace AccountabilityAccountingDataAccess
             SqlParameter summaOld = command.Parameters.Add("@summaOld", SqlDbType.Float, 64, "Сумма");
             summaOld.SourceVersion = DataRowVersion.Original;
             
+
+            return command;
+        }
+
+        private SqlCommand CreateDeleteCommadSummary(SqlConnection conn, DataTable table, string userName)
+        {
+            SqlCommand command = new SqlCommand();
+            command.Connection = conn;
+
+            command.CommandType = CommandType.StoredProcedure;
+            command.CommandText = "delete_summary";
+
+            command.Parameters.Add("@summaryDate", SqlDbType.DateTime, 32, "Дата");
+            command.Parameters.Add("@projectName", SqlDbType.NChar, 200, "Проект");
+            command.Parameters.Add("@itemDescription", SqlDbType.NChar, 200, "Статья");
+            command.Parameters.Add("@transcriptItemDescription", SqlDbType.NChar, 200, "Расшифровка");
+            command.Parameters.Add("@accountableName", SqlDbType.NChar, 200, "Подотчетник");
+            command.Parameters.Add("@sign", SqlDbType.Char, 1, "Приход/Расход");
+            command.Parameters.Add("@summa", SqlDbType.Float, 64, "Сумма");
 
             return command;
         }

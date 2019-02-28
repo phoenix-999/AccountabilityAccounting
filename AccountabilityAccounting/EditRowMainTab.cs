@@ -119,7 +119,7 @@ namespace AccountabilityAccounting
             {
                 DataTable table = DataProviderClient.GetData(selector, (DataProviderService.User)AuthenticationService.User.Current);
                 grid.DataSource = table;
-                grid.CellDoubleClick += (ob, ea) => { tb.Text = grid.CurrentCell.Value.ToString(); form.Close(); };
+                grid.CellDoubleClick += (ob, ea) => { tb.Text = grid.CurrentRow.Cells[1].Value.ToString(); form.Close(); };
             }
             catch (FaultException<SecurityTokenException> ex)
             {
