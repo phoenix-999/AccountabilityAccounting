@@ -225,7 +225,7 @@ CREATE TABLE [dbo].[Summary](
 	[IdItem] [int] NOT NULL,
 	[IdAccounttable] [int] NOT NULL,
 	[Sign] [char](1) NOT NULL,
-	[Summa] [int] NOT NULL,
+	[Summa] [bigint] NOT NULL,
 	[IdUser] [int] NOT NULL,
 	[Transcript] [nvarchar](200) NULL,
 PRIMARY KEY CLUSTERED 
@@ -324,7 +324,7 @@ BEGIN
 		and Transcript = @transcriptItemDescription
 		and IdAccounttable = @idAccountable
 		and Sign = @sign
-		and Summa = cast(convert(float, @summa, 2) * 100 as int)
+		and Summa = cast(convert(float, @summa, 2) * 100 as bigint)
 END
 GO
 
@@ -466,6 +466,10 @@ BEGIN
 
     -- Insert statements for procedure here
 	select distinct
+		case
+			when Sign = '+' then 'Приход'
+			else 'Расход'
+		end 'Описание',
 		Sign
 	from
 		Summary
@@ -602,7 +606,7 @@ BEGIN
 		@transcriptItemDescription,
 		@idAccountable,
 		@sign,
-		cast(convert(float, @summa, 2) * 100 as int),
+		cast(convert(float, @summa, 2) * 100 as bigint),
 		@idUser
 	)
 END
@@ -672,7 +676,7 @@ BEGIN
 		IdItem = @idItemNew,
 		IdAccounttable = @idAccountableNew,
 		Sign = @signNew,
-		Summa = cast(convert(float, @summaNew, 2) * 100 as int),
+		Summa = cast(convert(float, @summaNew, 2) * 100 as bigint),
 		Transcript = @transcriptItemDescriptionNew,
 		IdUser = @idUserNew
 	where
@@ -681,7 +685,7 @@ BEGIN
 		and IdItem = @idItemOld
 		and IdAccounttable = @idAccountableOld
 		and Sign = @signOld
-		and Summa = cast(convert(float, @summaOld, 2) * 100 as int)
+		and Summa = cast(convert(float, @summaOld, 2) * 100 as bigint)
 		and Transcript = @transcriptItemDescriptionOld
 
 END

@@ -42,14 +42,14 @@
             this.dataGridViewSigns.Name = "dataGridViewSigns";
             this.dataGridViewSigns.ReadOnly = true;
             this.dataGridViewSigns.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dataGridViewSigns.Size = new System.Drawing.Size(111, 75);
+            this.dataGridViewSigns.Size = new System.Drawing.Size(195, 75);
             this.dataGridViewSigns.TabIndex = 0;
             // 
             // SignsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(111, 75);
+            this.ClientSize = new System.Drawing.Size(195, 75);
             this.Controls.Add(this.dataGridViewSigns);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;

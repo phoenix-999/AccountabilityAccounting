@@ -113,7 +113,6 @@
             this.dataGridViewMainTab.ReadOnly = true;
             this.dataGridViewMainTab.Size = new System.Drawing.Size(1276, 590);
             this.dataGridViewMainTab.TabIndex = 1;
-            this.dataGridViewMainTab.DataError += DataError_EventHandler;
             // 
             // panel1
             // 

@@ -25,6 +25,7 @@ namespace AccountabilityAccountingDataAccess
             {
                 conn.Open();
                 adapter.Update(table);
+                table.AcceptChanges();
             }            
         }
 

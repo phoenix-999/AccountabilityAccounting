@@ -159,6 +159,8 @@ namespace AccountabilityAccounting
                     {
                         dataProviderClient.UpdateData(updater, tableDataGridViewMainTab, (DataProviderService.User)AuthenticationService.User.Current);
                         transaction.Complete();
+                        tableDataGridViewMainTab.AcceptChanges();
+                    MessageBox.Show("Все изменения успешно применены");
                     }                 
                 }
                 catch (FaultException<SecurityTokenException> ex)
@@ -207,5 +209,7 @@ namespace AccountabilityAccounting
         {
             MessageBox.Show("Ошибка при заполнении полей данных. Изменения отменены.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+
     }
 }

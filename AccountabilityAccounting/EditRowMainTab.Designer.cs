@@ -136,6 +136,7 @@
             // tbTranscriptItem
             // 
             this.tbTranscriptItem.Location = new System.Drawing.Point(375, 115);
+            this.tbTranscriptItem.MaxLength = 200;
             this.tbTranscriptItem.Name = "tbTranscriptItem";
             this.tbTranscriptItem.Size = new System.Drawing.Size(350, 20);
             this.tbTranscriptItem.TabIndex = 11;
