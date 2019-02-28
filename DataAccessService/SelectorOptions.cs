@@ -12,6 +12,7 @@ namespace DataAccessService
         GetSummary,
         GetSign,
         GetProjects,
-        GetAccountables
+        GetAccountables,
+        GetItems
     }
 }

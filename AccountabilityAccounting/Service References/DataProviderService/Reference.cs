@@ -89,6 +89,9 @@ namespace AccountabilityAccounting.DataProviderService {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         GetAccountables = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        GetItems = 4,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]

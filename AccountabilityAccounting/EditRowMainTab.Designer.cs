@@ -120,6 +120,7 @@
             // 
             this.tbItem.Location = new System.Drawing.Point(375, 84);
             this.tbItem.Name = "tbItem";
+            this.tbItem.ReadOnly = true;
             this.tbItem.Size = new System.Drawing.Size(350, 20);
             this.tbItem.TabIndex = 9;
             // 
@@ -222,6 +223,7 @@
             this.btnItems.TabIndex = 21;
             this.btnItems.Text = "...";
             this.btnItems.UseVisualStyleBackColor = true;
+            this.btnItems.Click += new System.EventHandler(this.btnItems_Click);
             // 
             // btnSigns
             // 

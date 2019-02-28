@@ -148,5 +148,11 @@ namespace AccountabilityAccounting
             AccountablesForm form = new AccountablesForm(DataProviderClient, this);
             form.Show();
         }
+
+        private void btnItems_Click(object sender, EventArgs e)
+        {
+            ItemsForm form = new ItemsForm(DataProviderClient, this);
+            form.Show();
+        }
     }
 }

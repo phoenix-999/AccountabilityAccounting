@@ -118,8 +118,30 @@ namespace AccountabilityAccountingDataAccess
 
                 adapter.Fill(table);
             }
+            return table;
+        }
 
+        public DataTable GetItems()
+        {
+            DataTable table = new DataTable("Items");
+            SqlConnection conn;
+            SqlDataAdapter adapter;
 
+            using (conn = new SqlConnection())
+            {
+                conn.ConnectionString = DBAccess.AccountabilityAccountingConnectionString;
+                SqlCommand command = new SqlCommand();
+                command.Connection = conn;
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "get_items";
+
+                adapter = new SqlDataAdapter();
+                adapter.SelectCommand = command;
+
+                conn.Open();
+
+                adapter.Fill(table);
+            }
             return table;
         }
     }

@@ -83,6 +83,12 @@
     <Compile Include="EditRowMainTab.Designer.cs">
       <DependentUpon>EditRowMainTab.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditRowMainTabForms\ItemsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditRowMainTabForms\ItemsForm.Designer.cs">
+      <DependentUpon>ItemsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditRowMainTabForms\AccountablesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EditRowMainTab.resx">
       <DependentUpon>EditRowMainTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditRowMainTabForms\ItemsForm.resx">
+      <DependentUpon>ItemsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditRowMainTabForms\AccountablesForm.resx">
       <DependentUpon>AccountablesForm.cs</DependentUpon>

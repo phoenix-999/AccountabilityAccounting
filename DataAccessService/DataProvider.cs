@@ -87,6 +87,10 @@ namespace DataAccessService
             {
                 table = select.GetAccountables();
             }
+            else if (selector.SelectorOption == SelectorOptions.GetItems)
+            {
+                table = select.GetItems();
+            }
 
             return table;
         }
