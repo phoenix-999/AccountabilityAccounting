@@ -1,9 +1,8 @@
 ﻿USE [master]
 GO
 
-/****** Object:  Database [AccountabilityAccounting]    Script Date: 22.02.2019 14:24:32 ******/
+/****** Object:  Database [AccountabilityAccounting]    Script Date: 28.02.2019 13:37:38 ******/
 CREATE DATABASE [AccountabilityAccounting]
- 
 GO
 
 ALTER DATABASE [AccountabilityAccounting] SET COMPATIBILITY_LEVEL = 120
@@ -109,33 +108,12 @@ GO
 
 
 
---Users Table -------------------------------------------------------------------------------------------
+----------------------------------------Tables----------------------------------------
+
 USE [AccountabilityAccounting]
 GO
 
-/****** Object:  Table [dbo].[Users]    Script Date: 22.02.2019 14:26:22 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE TABLE [dbo].[Users](
-	[IdUser] [int] IDENTITY(1,1) NOT NULL,
-	[UserName] [nvarchar](30) NOT NULL,
-	[Password] [nvarchar](30) NOT NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[IdUser] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-
---------------------------------------------------------------------
-USE [AccountabilityAccounting]
-GO
-
-/****** Object:  Table [dbo].[Accountables]    Script Date: 25.02.2019 11:32:08 ******/
+/****** Object:  Table [dbo].[Accountables]    Script Date: 28.02.2019 13:38:58 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -152,12 +130,13 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 GO
 
--------------------------------------------------------------------------
+
+
 
 USE [AccountabilityAccounting]
 GO
 
-/****** Object:  Table [dbo].[Items]    Script Date: 25.02.2019 11:32:33 ******/
+/****** Object:  Table [dbo].[Items]    Script Date: 28.02.2019 13:39:11 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -175,13 +154,11 @@ PRIMARY KEY CLUSTERED
 GO
 
 
-----------------------------------------------------------------------------
-
 
 USE [AccountabilityAccounting]
 GO
 
-/****** Object:  Table [dbo].[Projects]    Script Date: 25.02.2019 11:32:50 ******/
+/****** Object:  Table [dbo].[Projects]    Script Date: 28.02.2019 13:39:24 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -200,36 +177,40 @@ GO
 
 
 
----------------------------------------------------------------------------
-
 USE [AccountabilityAccounting]
 GO
 
-/****** Object:  Table [dbo].[TranscriptItems]    Script Date: 25.02.2019 11:33:13 ******/
+/****** Object:  Table [dbo].[Users]    Script Date: 28.02.2019 13:39:34 ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE TABLE [dbo].[TranscriptItems](
-	[IdTranscriptItem] [int] IDENTITY(1,1) NOT NULL,
-	[TranscriptItemsDescription] [nvarchar](200) NOT NULL,
+CREATE TABLE [dbo].[Users](
+	[IdUser] [int] IDENTITY(1,1) NOT NULL,
+	[UserName] [nvarchar](200) unique NOT NULL,
+	[Password] [nvarchar](200) NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
-	[IdTranscriptItem] ASC
+	[IdUser] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
 
 
------------------------------------------------------------------------------------
+insert into Users (UserName, Password) values ('yurii', 'NWoZK3kTsExUV00Ywo1G5jlUKKs=')
+GO
+insert into Users (UserName, Password) values ('yurii2', '2kuSN7rMzfGcB2DKt67EqDWQELA=')
+GO
+
+
 
 
 USE [AccountabilityAccounting]
 GO
 
-/****** Object:  Table [dbo].[Summary]    Script Date: 25.02.2019 12:16:08 ******/
+/****** Object:  Table [dbo].[Summary]    Script Date: 28.02.2019 13:40:17 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -237,15 +218,20 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[Summary](
+	[IdAction] [int] IDENTITY(1,1) NOT NULL,
 	[ActionDate] [date] NOT NULL,
 	[SummaryDate] [date] NOT NULL,
 	[IdProject] [int] NOT NULL,
 	[IdItem] [int] NOT NULL,
-	[IdTranscriptItem] [int] NULL,
 	[IdAccounttable] [int] NOT NULL,
 	[Sign] [char](1) NOT NULL,
 	[Summa] [int] NOT NULL,
-	[IdUser] [int] NOT NULL
+	[IdUser] [int] NOT NULL,
+	[Transcript] [nvarchar](200) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IdAction] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
 
@@ -276,13 +262,6 @@ GO
 ALTER TABLE [dbo].[Summary] CHECK CONSTRAINT [FK_Summary_Projects]
 GO
 
-ALTER TABLE [dbo].[Summary]  WITH CHECK ADD  CONSTRAINT [FK_Summary_TranscriptItems] FOREIGN KEY([IdTranscriptItem])
-REFERENCES [dbo].[TranscriptItems] ([IdTranscriptItem])
-GO
-
-ALTER TABLE [dbo].[Summary] CHECK CONSTRAINT [FK_Summary_TranscriptItems]
-GO
-
 ALTER TABLE [dbo].[Summary]  WITH CHECK ADD  CONSTRAINT [FK_Summary_Users] FOREIGN KEY([IdUser])
 REFERENCES [dbo].[Users] ([IdUser])
 GO
@@ -292,22 +271,18 @@ GO
 
 
 
-GO
-
-
-
----------------------------------------------------------------------------
 
 
 
 
---Storder Procedure ----------------------------------------------------------------------------------------------
+-------------------------StoredProcedures--------------------------------------------
+
 
 
 USE [AccountabilityAccounting]
 GO
 
-/****** Object:  StoredProcedure [dbo].[get_user]    Script Date: 22.02.2019 14:27:04 ******/
+/****** Object:  StoredProcedure [dbo].[delete_summary]    Script Date: 28.02.2019 13:54:28 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -319,40 +294,14 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE [dbo].[get_user]
-	-- Add the parameters for the stored procedure here
-	@login nvarchar(30),
-	@password nvarchar(30),
-	@IdUser int output,
-	@userName nvarchar(30) output
-AS
-BEGIN
-	    -- Insert statements for procedure here
-	select @IdUser = IdUser, @userName=UserName from Users where [UserName] = @login and [Password] = @password
-END
-GO
-
-------------------------------------------------------------------------------------
-
-USE [AccountabilityAccounting]
-GO
-
-/****** Object:  StoredProcedure [dbo].[get_summary]    Script Date: 25.02.2019 13:40:25 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
--- =============================================
--- Author:		<Author,,Name>
--- Create date: <Create Date,,>
--- Description:	<Description,,>
--- =============================================
-CREATE PROCEDURE [dbo].[get_summary]
-	-- Add the parameters for the stored procedure here
-	@ds datetime,
-	@de datetime
+CREATE PROCEDURE [dbo].[delete_summary]
+	@summaryDate datetime,
+	@projectName nvarchar(200),
+	@itemDescription nvarchar(200),
+	@transcriptItemDescription nvarchar(200),
+	@accountableName nvarchar(200),
+	@sign char(1),
+	@summa float
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -360,67 +309,142 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	SELECT
-		s.SummaryDate as 'Дата',
-		s.Sign as 'Приход/Расход',
-		p.ProjectName as 'Проект',
-		a.AccountableName as 'Подотчетник',
-		i.ItemDescription as 'Статья',
-		isnull(ti.TranscriptItemsDescription, '') as 'Расшифровка',
-		cast(s.Summa as float) / 100 as 'Сумма'
-	from
-		Summary s
-		inner join Projects p on (s.IdProject=p.IdProject)
-		inner join Accountables a on (s.IdAccounttable = a.IdAccountable)
-		inner join Items i on (s.IdItem = i.IdItem)
-		left join TranscriptItems ti on (s.IdTranscriptItem = ti.IdTranscriptItem)
-	where
-		cast(s.SummaryDate as date) between cast(@ds as date) and cast(@de as date)
-END
-GO
---------------------------------------------------------------------------------
-
-CREATE PROCEDURE [dbo].[insert_summary]
-	@summaryDate datetime,
-	@projectName nvarchar(200),
-	@itemDescription nvarchar(200),
-	@transcriptItemDescription nvarchar(200),
-	@accountableName nvarchar(200),
-	@sign char(1),
-	@summa float,
-	@userName nvarchar(30)
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-
-    -- Insert statements for procedure here
-	declare @idProject int, @idItem int, @idTranscriptItem int, @idAccountable int, @idUser int
+	declare @idProject int, @idItem int, @idAccountable int
 	set @idProject = (select top(1) IdProject from Projects where ProjectName=@projectName)
 	set @idItem = (select top(1) IdItem from Items where ItemDescription=@itemDescription)
-	set @idTranscriptItem = (select top(1) IdTranscriptItem from TranscriptItems where TranscriptItemsDescription=@transcriptItemDescription)
 	set @idAccountable = (select top(1) IdAccountable from Accountables where AccountableName=@accountableName)
-	set @idUser = (select top(1) IdUser from Users where UserName=@userName)
 
-	insert into Summary (SummaryDate, IdProject, IdItem, IdTranscriptItem, IdAccounttable, Sign, Summa, IdUser) values
-	(
-		@summaryDate,
-		@idProject,
-		@idItem,
-		@idTranscriptItem,
-		@idAccountable,
-		@sign,
-		cast(convert(float, @summa, 2) * 100 as int),
-		@idUser
-	)
+	delete top(1)
+	from
+		Summary
+	where
+		SummaryDate = @summaryDate
+		and IdProject = @idProject
+		and IdItem = @idItem
+		and Transcript = @transcriptItemDescription
+		and IdAccounttable = @idAccountable
+		and Sign = @sign
+		and Summa = cast(convert(float, @summa, 2) * 100 as int)
 END
+GO
 
---------------------------------------------------
+
+
 
 USE [AccountabilityAccounting]
 GO
 
-/****** Object:  StoredProcedure [dbo].[get_signs]    Script Date: 27.02.2019 14:25:35 ******/
+/****** Object:  StoredProcedure [dbo].[get_accountables]    Script Date: 28.02.2019 13:54:44 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[get_accountables]
+	-- Add the parameters for the stored procedure here
+	
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	select distinct
+		IdAccountable as 'Id',
+		AccountableName as'Подотчетник'
+	from
+		Accountables
+END
+
+
+
+
+
+USE [AccountabilityAccounting]
+GO
+
+/****** Object:  StoredProcedure [dbo].[get_items]    Script Date: 28.02.2019 13:54:55 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[get_items]
+	-- Add the parameters for the stored procedure here
+	
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	select distinct
+		IdItem as 'Id',
+		ItemDescription as'Статья'
+	from
+		Items
+END
+GO
+
+
+
+
+
+USE [AccountabilityAccounting]
+GO
+
+/****** Object:  StoredProcedure [dbo].[get_projects]    Script Date: 28.02.2019 13:55:04 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[get_projects]
+	-- Add the parameters for the stored procedure here
+	
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	select distinct
+		IdProject as 'Id',
+		ProjectName as'Проект'
+	from
+		Projects
+END
+GO
+
+
+
+
+
+USE [AccountabilityAccounting]
+GO
+
+/****** Object:  StoredProcedure [dbo].[get_signs]    Script Date: 28.02.2019 13:55:15 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -449,4 +473,219 @@ END
 GO
 
 
----------------------------------------------------------------------------------
+
+
+
+USE [AccountabilityAccounting]
+GO
+
+/****** Object:  StoredProcedure [dbo].[get_summary]    Script Date: 28.02.2019 13:55:26 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[get_summary]
+	-- Add the parameters for the stored procedure here
+	@ds datetime,
+	@de datetime
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	
+
+	SELECT
+		s.SummaryDate as 'Дата',
+		s.Sign as 'Приход/Расход',
+		p.ProjectName as 'Проект',
+		a.AccountableName as 'Подотчетник',
+		i.ItemDescription as 'Статья',
+		isnull(s.Transcript, '') as 'Расшифровка',
+		cast(s.Summa as float) / 100 as 'Сумма'
+	from
+		Summary s
+		inner join Projects p on (s.IdProject=p.IdProject)
+		inner join Accountables a on (s.IdAccounttable = a.IdAccountable)
+		inner join Items i on (s.IdItem = i.IdItem)
+	where
+		cast(s.SummaryDate as date) between cast(@ds as date) and cast(@de as date)
+END
+GO
+
+
+
+
+
+USE [AccountabilityAccounting]
+GO
+
+/****** Object:  StoredProcedure [dbo].[get_user]    Script Date: 28.02.2019 13:55:34 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[get_user]
+	-- Add the parameters for the stored procedure here
+	@login nvarchar(30),
+	@password nvarchar(30),
+	@IdUser int output,
+	@userName nvarchar(30) output
+AS
+BEGIN
+	    -- Insert statements for procedure here
+	select @IdUser = IdUser, @userName=UserName from Users where [UserName] = @login and [Password] = @password
+END
+GO
+
+
+
+
+
+USE [AccountabilityAccounting]
+GO
+
+/****** Object:  StoredProcedure [dbo].[insert_summary]    Script Date: 28.02.2019 13:55:43 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[insert_summary]
+	@summaryDate datetime,
+	@projectName nvarchar(200),
+	@itemDescription nvarchar(200),
+	@transcriptItemDescription nvarchar(200),
+	@accountableName nvarchar(200),
+	@sign char(1),
+	@summa float,
+	@userName nvarchar(30)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+
+    -- Insert statements for procedure here
+	declare @idProject int, @idItem int, @idAccountable int, @idUser int
+	set @idProject = (select top(1) IdProject from Projects where ProjectName=@projectName)
+	set @idItem = (select top(1) IdItem from Items where ItemDescription=@itemDescription)
+	set @idAccountable = (select top(1) IdAccountable from Accountables where AccountableName=@accountableName)
+	set @idUser = (select top(1) IdUser from Users where UserName=@userName)
+
+	insert into Summary (SummaryDate, IdProject, IdItem, Transcript, IdAccounttable, Sign, Summa, IdUser) values
+	(
+		@summaryDate,
+		@idProject,
+		@idItem,
+		@transcriptItemDescription,
+		@idAccountable,
+		@sign,
+		cast(convert(float, @summa, 2) * 100 as int),
+		@idUser
+	)
+END
+GO
+
+
+
+
+USE [AccountabilityAccounting]
+GO
+
+/****** Object:  StoredProcedure [dbo].[update_summary]    Script Date: 28.02.2019 13:55:54 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[update_summary]
+	@summaryDateOld datetime,
+	@projectNameOld nvarchar(200),
+	@itemDescriptionOld nvarchar(200),
+	@transcriptItemDescriptionOld nvarchar(200),
+	@accountableNameOld nvarchar(200),
+	@signOld char(1),
+	@summaOld float,
+
+	@summaryDateNew datetime,
+	@projectNameNew nvarchar(200),
+	@itemDescriptionNew nvarchar(200),
+	@transcriptItemDescriptionNew nvarchar(200),
+	@accountableNameNew nvarchar(200),
+	@signNew char(1),
+	@summaNew float,
+	@userNameNew nvarchar(30)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+
+	declare
+	@idProjectOld int, @idItemOld int, @idAccountableOld int,
+	@idProjectNew int, @idItemNew int, @idAccountableNew int, @idUserNew int
+
+	set @idProjectOld = (select top(1) IdProject from Projects where ProjectName=@projectNameOld)
+	set @idItemOld = (select top(1) IdItem from Items where ItemDescription=@itemDescriptionOld)
+	set @idAccountableOld = (select top(1) IdAccountable from Accountables where AccountableName=@accountableNameOld)
+	
+	set @idProjectNew = (select top(1) IdProject from Projects where ProjectName=@projectNameNew)
+	set @idItemNew = (select top(1) IdItem from Items where ItemDescription=@itemDescriptionNew)
+	set @idAccountableNew = (select top(1) IdAccountable from Accountables where AccountableName=@accountableNameNew)
+	set @idUserNew = (select top(1) IdUser from Users where UserName=@userNameNew)
+
+	update
+		Summary
+	set
+		SummaryDate = @summaryDateNew,
+		IdProject = @idProjectNew,
+		IdItem = @idItemNew,
+		IdAccounttable = @idAccountableNew,
+		Sign = @signNew,
+		Summa = cast(convert(float, @summaNew, 2) * 100 as int),
+		Transcript = @transcriptItemDescriptionNew,
+		IdUser = @idUserNew
+	where
+		SummaryDate = @summaryDateOld
+		and IdProject = @idProjectOld
+		and IdItem = @idItemOld
+		and IdAccounttable = @idAccountableOld
+		and Sign = @signOld
+		and Summa = cast(convert(float, @summaOld, 2) * 100 as int)
+		and Transcript = @transcriptItemDescriptionOld
+
+END
+GO
+
+
+
