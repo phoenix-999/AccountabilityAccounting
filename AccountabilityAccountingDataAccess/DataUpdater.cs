@@ -18,7 +18,7 @@ namespace AccountabilityAccountingDataAccess
 
             SqlDataAdapter adapter = new SqlDataAdapter();
             adapter.InsertCommand = CreateInsertCommadSummary(conn, table, userName);
-            adapter.UpdateCommand = null;
+            adapter.UpdateCommand = CreateUpdateCommadSummary(conn, table, userName);
             adapter.DeleteCommand = null;
 
             using (conn)
@@ -42,7 +42,7 @@ namespace AccountabilityAccountingDataAccess
             command.Parameters.Add("@transcriptItemDescription", SqlDbType.NChar, 200, "Расшифровка");
             command.Parameters.Add("@accountableName", SqlDbType.NChar, 200, "Подотчетник");
             command.Parameters.Add("@sign", SqlDbType.Char, 1, "Приход/Расход");
-            command.Parameters.Add("@summa", SqlDbType.NChar, 200, "Сумма");
+            command.Parameters.Add("@summa", SqlDbType.Float, 64, "Сумма");
 
             SqlParameter userNameParam = new SqlParameter();
             userNameParam.SqlDbType = SqlDbType.NVarChar;
@@ -54,6 +54,81 @@ namespace AccountabilityAccountingDataAccess
 
             return command;
         }
-        
+
+        private SqlCommand CreateUpdateCommadSummary(SqlConnection conn, DataTable table, string userName)
+        {
+            SqlCommand command = new SqlCommand();
+            command.Connection = conn;
+
+            command.CommandType = CommandType.StoredProcedure;
+            command.CommandText = "update_summary";
+            // New Parametres
+            SqlParameter summaryDateNew = command.Parameters.Add("@summaryDateNew", SqlDbType.DateTime, 64, "Дата");
+            summaryDateNew.SourceVersion = DataRowVersion.Current;
+            
+
+            SqlParameter projectNameNew = command.Parameters.Add("@projectNameNew", SqlDbType.NVarChar, 200, "Проект");
+            projectNameNew.SourceVersion = DataRowVersion.Current;
+            
+
+            SqlParameter itemDescriptionNew = command.Parameters.Add("@itemDescriptionNew", SqlDbType.NVarChar, 200, "Статья");
+            itemDescriptionNew.SourceVersion = DataRowVersion.Current;
+            
+
+            SqlParameter transcriptItemDescriptionNew = command.Parameters.Add("@transcriptItemDescriptionNew", SqlDbType.NVarChar, 200, "Расшифровка");
+            transcriptItemDescriptionNew.SourceVersion = DataRowVersion.Current;
+            
+
+            SqlParameter accountableNameNew = command.Parameters.Add("@accountableNameNew", SqlDbType.NVarChar, 200, "Подотчетник");
+            accountableNameNew.SourceVersion = DataRowVersion.Current;
+            
+
+            SqlParameter signNew = command.Parameters.Add("@signNew", SqlDbType.Char, 1, "Приход/Расход");
+            signNew.SourceVersion = DataRowVersion.Current;
+            
+
+            SqlParameter summaNew = command.Parameters.Add("@summaNew", SqlDbType.Float, 64, "Сумма");
+            summaNew.SourceVersion = DataRowVersion.Current;
+            
+
+            SqlParameter userNameParam = new SqlParameter();
+            userNameParam.SqlDbType = SqlDbType.NVarChar;
+            userNameParam.Size = 30;
+            userNameParam.ParameterName = "@userNameNew";
+            userNameParam.Value = userName;
+            command.Parameters.Add(userNameParam);
+
+            // Old Parametres
+            SqlParameter summaryDateOld = command.Parameters.Add("@summaryDateOld", SqlDbType.DateTime, 64, "Дата");
+            summaryDateOld.SourceVersion = DataRowVersion.Original;
+            
+
+            SqlParameter projectNameOld = command.Parameters.Add("@projectNameOld", SqlDbType.NVarChar, 200, "Проект");
+            projectNameOld.SourceVersion = DataRowVersion.Original;
+            
+
+            SqlParameter itemDescriptionOld = command.Parameters.Add("@itemDescriptionOld", SqlDbType.NVarChar, 200, "Статья");
+            itemDescriptionOld.SourceVersion = DataRowVersion.Original;
+            
+
+            SqlParameter transcriptItemDescriptionOld = command.Parameters.Add("@transcriptItemDescriptionOld", SqlDbType.NVarChar, 200, "Расшифровка");
+            transcriptItemDescriptionOld.SourceVersion = DataRowVersion.Original;
+            
+
+            SqlParameter accountableNameOld = command.Parameters.Add("@accountableNameOld", SqlDbType.NVarChar, 200, "Подотчетник");
+            accountableNameOld.SourceVersion = DataRowVersion.Original;
+            
+
+            SqlParameter signOld = command.Parameters.Add("@signOld", SqlDbType.Char, 1, "Приход/Расход");
+            signOld.SourceVersion = DataRowVersion.Original;
+            
+
+            SqlParameter summaOld = command.Parameters.Add("@summaOld", SqlDbType.Float, 64, "Сумма");
+            summaOld.SourceVersion = DataRowVersion.Original;
+            
+
+            return command;
+        }
+
     }
 }

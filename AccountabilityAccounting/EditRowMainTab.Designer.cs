@@ -74,7 +74,6 @@
             // 
             this.tbSign.Location = new System.Drawing.Point(155, 48);
             this.tbSign.Name = "tbSign";
-            this.tbSign.ReadOnly = true;
             this.tbSign.Size = new System.Drawing.Size(42, 20);
             this.tbSign.TabIndex = 3;
             // 
