@@ -83,6 +83,10 @@ namespace DataAccessService
             {
                 table = select.GetProjects();
             }
+            else if (selector.SelectorOption == SelectorOptions.GetAccountables)
+            {
+                table = select.GetAccountables();
+            }
 
             return table;
         }

@@ -13,6 +13,7 @@
       <xs:enumeration value="GetSummary" />
       <xs:enumeration value="GetSign" />
       <xs:enumeration value="GetProjects" />
+      <xs:enumeration value="GetAccountables" />
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="SelectorOptions" nillable="true" type="tns:SelectorOptions" />

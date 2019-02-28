@@ -38,7 +38,7 @@ namespace AccountabilityAccounting
             dtpDate.Text = Row.Cells["Дата"].Value.ToString();
             tbSign.Text = Row.Cells["Приход/Расход"].Value.ToString();
             tbProject.Text = Row.Cells["Проект"].Value.ToString();
-            tbAccounting.Text = Row.Cells["Подотчетник"].Value.ToString();
+            tbAccountables.Text = Row.Cells["Подотчетник"].Value.ToString();
             tbItem.Text = Row.Cells["Статья"].Value.ToString();
             tbTranscriptItem.Text = Row.Cells["Расшифровка"].Value.ToString();
             tbSum.Text = Row.Cells["Сумма"].Value.ToString();
@@ -59,7 +59,7 @@ namespace AccountabilityAccounting
             Row.Cells["Дата"].Value = dtpDate.Text;
             Row.Cells["Приход/Расход"].Value = tbSign.Text;
             Row.Cells["Проект"].Value = tbProject.Text;
-            Row.Cells["Подотчетник"].Value = tbAccounting.Text;
+            Row.Cells["Подотчетник"].Value = tbAccountables.Text;
             Row.Cells["Статья"].Value = tbItem.Text;
             Row.Cells["Расшифровка"].Value = tbTranscriptItem.Text;
             Row.Cells["Сумма"].Value = tbSum.Text;
@@ -139,8 +139,14 @@ namespace AccountabilityAccounting
 
         private void btnProjects_Click(object sender, EventArgs e)
         {
-            ProjectsForm projForm = new ProjectsForm(DataProviderClient, this);
-            projForm.Show();
+            ProjectsForm form = new ProjectsForm(DataProviderClient, this);
+            form.Show();
+        }
+
+        private void btnAccountables_Click(object sender, EventArgs e)
+        {
+            AccountablesForm form = new AccountablesForm(DataProviderClient, this);
+            form.Show();
         }
     }
 }

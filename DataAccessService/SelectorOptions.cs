@@ -11,6 +11,7 @@ namespace DataAccessService
     {
         GetSummary,
         GetSign,
-        GetProjects
+        GetProjects,
+        GetAccountables
     }
 }

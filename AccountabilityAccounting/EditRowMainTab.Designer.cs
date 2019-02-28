@@ -43,9 +43,9 @@
             this.btCancel = new System.Windows.Forms.Button();
             this.btAccept = new System.Windows.Forms.Button();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
-            this.tbAccounting = new System.Windows.Forms.TextBox();
+            this.tbAccountables = new System.Windows.Forms.TextBox();
             this.btnProjects = new System.Windows.Forms.Button();
-            this.btnAccountings = new System.Windows.Forms.Button();
+            this.btnAccountables = new System.Windows.Forms.Button();
             this.btnItems = new System.Windows.Forms.Button();
             this.btnSigns = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -186,12 +186,13 @@
             this.dtpDate.Size = new System.Drawing.Size(136, 20);
             this.dtpDate.TabIndex = 17;
             // 
-            // tbAccounting
+            // tbAccountables
             // 
-            this.tbAccounting.Location = new System.Drawing.Point(375, 49);
-            this.tbAccounting.Name = "tbAccounting";
-            this.tbAccounting.Size = new System.Drawing.Size(350, 20);
-            this.tbAccounting.TabIndex = 18;
+            this.tbAccountables.Location = new System.Drawing.Point(375, 49);
+            this.tbAccountables.Name = "tbAccountables";
+            this.tbAccountables.ReadOnly = true;
+            this.tbAccountables.Size = new System.Drawing.Size(350, 20);
+            this.tbAccountables.TabIndex = 18;
             // 
             // btnProjects
             // 
@@ -203,14 +204,15 @@
             this.btnProjects.UseVisualStyleBackColor = true;
             this.btnProjects.Click += new System.EventHandler(this.btnProjects_Click);
             // 
-            // btnAccountings
+            // btnAccountables
             // 
-            this.btnAccountings.Location = new System.Drawing.Point(731, 48);
-            this.btnAccountings.Name = "btnAccountings";
-            this.btnAccountings.Size = new System.Drawing.Size(41, 22);
-            this.btnAccountings.TabIndex = 20;
-            this.btnAccountings.Text = "...";
-            this.btnAccountings.UseVisualStyleBackColor = true;
+            this.btnAccountables.Location = new System.Drawing.Point(731, 48);
+            this.btnAccountables.Name = "btnAccountables";
+            this.btnAccountables.Size = new System.Drawing.Size(41, 22);
+            this.btnAccountables.TabIndex = 20;
+            this.btnAccountables.Text = "...";
+            this.btnAccountables.UseVisualStyleBackColor = true;
+            this.btnAccountables.Click += new System.EventHandler(this.btnAccountables_Click);
             // 
             // btnItems
             // 
@@ -238,9 +240,9 @@
             this.ClientSize = new System.Drawing.Size(784, 262);
             this.Controls.Add(this.btnSigns);
             this.Controls.Add(this.btnItems);
-            this.Controls.Add(this.btnAccountings);
+            this.Controls.Add(this.btnAccountables);
             this.Controls.Add(this.btnProjects);
-            this.Controls.Add(this.tbAccounting);
+            this.Controls.Add(this.tbAccountables);
             this.Controls.Add(this.dtpDate);
             this.Controls.Add(this.btAccept);
             this.Controls.Add(this.btCancel);
@@ -271,7 +273,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox tbItem;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox tbTranscriptItem;
         private System.Windows.Forms.Label label7;
@@ -279,12 +280,13 @@
         private System.Windows.Forms.Button btCancel;
         private System.Windows.Forms.Button btAccept;
         private System.Windows.Forms.DateTimePicker dtpDate;
-        private System.Windows.Forms.TextBox tbAccounting;
         private System.Windows.Forms.Button btnProjects;
-        private System.Windows.Forms.Button btnAccountings;
+        private System.Windows.Forms.Button btnAccountables;
         private System.Windows.Forms.Button btnItems;
         private System.Windows.Forms.Button btnSigns;
         internal System.Windows.Forms.TextBox tbSign;
         public System.Windows.Forms.TextBox tbProject;
+        internal System.Windows.Forms.TextBox tbItem;
+        internal System.Windows.Forms.TextBox tbAccountables;
     }
 }
