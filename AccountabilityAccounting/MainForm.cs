@@ -24,6 +24,7 @@ namespace AccountabilityAccounting
         protected static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
         DataProviderService.DataProviderClient dataProviderClient;
+        FiltersMainForm Filters;
 
         DataTable tableDataGridViewMainTab;
         public MainForm()
@@ -65,6 +66,8 @@ namespace AccountabilityAccounting
                 this.btnNewString.Click += new System.EventHandler(this.btnNewString_Click);
 
                 this.btnDeleteString.Click += new System.EventHandler(this.btnDeleteString_Click);
+
+                SetUpFilters();
             }
             catch (FaultException<SecurityTokenException> ex)
             {
@@ -76,6 +79,14 @@ namespace AccountabilityAccounting
                 MessageBox.Show("Ошибка в работе с базой данных. Обратитесть к администратору.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
+        }
+
+        private void SetUpFilters()
+        {
+            Dictionary<string, ComboBox> filtersDict = new Dictionary<string, ComboBox>();
+            filtersDict.Add("Проект", cmbProjects);
+            Filters = new FiltersMainForm(tableDataGridViewMainTab, filtersDict);
+            Filters.SetUpFilters();
         }
 
         private void DataGridViewMainTab_SelectionChanged(object sender, EventArgs e)
