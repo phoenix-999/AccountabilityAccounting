@@ -18,7 +18,7 @@ namespace AccountabilityAccounting
             Filters = filters;
         }
 
-        public void SetUpFilters()
+        public void CreateFilters()
         {
             foreach(var key in Filters.Keys)
             {

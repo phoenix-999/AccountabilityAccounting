@@ -67,7 +67,7 @@ namespace AccountabilityAccounting
 
                 this.btnDeleteString.Click += new System.EventHandler(this.btnDeleteString_Click);
 
-                SetUpFilters();
+                CreateFilters();
             }
             catch (FaultException<SecurityTokenException> ex)
             {
@@ -81,12 +81,12 @@ namespace AccountabilityAccounting
             }
         }
 
-        private void SetUpFilters()
+        private void CreateFilters()
         {
             Dictionary<string, ComboBox> filtersDict = new Dictionary<string, ComboBox>();
             filtersDict.Add("Проект", cmbProjects);
             Filters = new FiltersMainForm(tableDataGridViewMainTab, filtersDict);
-            Filters.SetUpFilters();
+            Filters.CreateFilters();
         }
 
         private void DataGridViewMainTab_SelectionChanged(object sender, EventArgs e)
