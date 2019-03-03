@@ -85,8 +85,12 @@ namespace AccountabilityAccounting
         {
             Dictionary<string, ComboBox> filtersDict = new Dictionary<string, ComboBox>();
             filtersDict.Add("Проект", cmbProjects);
+            filtersDict.Add("Статья", cmbItems);
+            filtersDict.Add("Подотчетник", cmbAccountables);
             Filters = new FiltersMainForm(tableDataGridViewMainTab, filtersDict);
             Filters.CreateFilters();
+
+           
         }
 
         private void DataGridViewMainTab_SelectionChanged(object sender, EventArgs e)
@@ -221,6 +225,22 @@ namespace AccountabilityAccounting
             MessageBox.Show("Ошибка при заполнении полей данных. Изменения отменены.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
+        
 
+        private void filters_click(object sender, EventArgs e)
+        {
+            try
+            {
+                CreateFilters();
+            }
+            catch { } // Перехват исключения при случайно нажатом комбобоксе до полечения данных из сервера
+        }
+
+        private void btnAcceptFilters_Click(object sender, EventArgs e)
+        {
+
+                Filters.SetUpFilters();
+
+        }
     }
 }

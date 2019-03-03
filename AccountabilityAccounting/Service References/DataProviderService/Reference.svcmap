@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="6b2ad728-9436-45ef-9519-6bda0bbf3708" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="9510aded-707d-44e0-b60f-3dfdaf01017e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,15 +22,15 @@
     <MetadataSource Address="http://localhost/DataAccessService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="e7d6faf4-95fe-46c5-8e81-6b45fabbaa72" SourceId="1" SourceUrl="http://localhost/DataAccessService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="32c09e4c-a643-482a-974e-768c3c00fae3" SourceId="1" SourceUrl="http://localhost/DataAccessService/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="6484eabe-0b60-45bc-a917-3f9926c0a338" SourceId="1" SourceUrl="http://localhost/DataAccessService/mex" />
-    <MetadataFile FileName="DataAccessService.xsd" MetadataType="Schema" ID="86d9c61c-7223-47cc-b364-9a94a8ea0e97" SourceId="1" SourceUrl="http://localhost/DataAccessService/mex" />
-    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="f80d34a2-9378-4f85-beca-e9fe5383532f" SourceId="1" SourceUrl="http://localhost/DataAccessService/mex" />
-    <MetadataFile FileName="AuthenticationService.xsd" MetadataType="Schema" ID="ec89dd5a-5e48-484f-9328-9af241b2ab07" SourceId="1" SourceUrl="http://localhost/DataAccessService/mex" />
-    <MetadataFile FileName="System.Data.xsd" MetadataType="Schema" ID="4d61e85c-601d-4246-afc0-534a169655c1" SourceId="1" SourceUrl="http://localhost/DataAccessService/mex" />
-    <MetadataFile FileName="System.IdentityModel.Tokens.xsd" MetadataType="Schema" ID="147759c3-4fe7-4e25-bb85-632e172d3c00" SourceId="1" SourceUrl="http://localhost/DataAccessService/mex" />
-    <MetadataFile FileName="System.xsd" MetadataType="Schema" ID="3c0226d2-0368-4db2-8e93-b4042f5f5797" SourceId="1" SourceUrl="http://localhost/DataAccessService/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="98262d2f-0ed9-4d1c-975b-5d99cd1ceb81" SourceId="1" SourceUrl="http://localhost/DataAccessService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="4ba6fe91-cb41-4ce6-a0fb-71d55da5af39" SourceId="1" SourceUrl="http://localhost/DataAccessService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="4e7086cf-ae2a-4d98-93e6-6d81cc63a59a" SourceId="1" SourceUrl="http://localhost/DataAccessService/mex" />
+    <MetadataFile FileName="DataAccessService.xsd" MetadataType="Schema" ID="e396bbe2-c21b-43fb-833b-239d000e1e30" SourceId="1" SourceUrl="http://localhost/DataAccessService/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="4d1cea68-5b0f-4e90-81d3-23610a4c210a" SourceId="1" SourceUrl="http://localhost/DataAccessService/mex" />
+    <MetadataFile FileName="AuthenticationService.xsd" MetadataType="Schema" ID="382fbe21-2675-4c61-8bd2-03f9beb761c7" SourceId="1" SourceUrl="http://localhost/DataAccessService/mex" />
+    <MetadataFile FileName="System.Data.xsd" MetadataType="Schema" ID="56dd16f6-051a-4afb-9078-08a6476d19aa" SourceId="1" SourceUrl="http://localhost/DataAccessService/mex" />
+    <MetadataFile FileName="System.IdentityModel.Tokens.xsd" MetadataType="Schema" ID="b6ab802d-4216-4c49-8c68-76ec74b0b3d2" SourceId="1" SourceUrl="http://localhost/DataAccessService/mex" />
+    <MetadataFile FileName="System.xsd" MetadataType="Schema" ID="260befc9-251a-4291-9310-7567ef070146" SourceId="1" SourceUrl="http://localhost/DataAccessService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

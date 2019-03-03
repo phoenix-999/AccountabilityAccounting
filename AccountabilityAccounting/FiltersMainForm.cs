@@ -28,10 +28,15 @@ namespace AccountabilityAccounting
 
         private void AddFilter(DataTable table, string columnName, ComboBox comboBox)
         {
+            comboBox.Items.Clear();
             HashSet<string> values = new HashSet<string>();
             values.Add("Все");
             for(int row = 0; row < table.Rows.Count; row++)
             {
+                if(table.Rows[row].RowState == DataRowState.Deleted)
+                {
+                    continue;
+                }
                 for(int column = 0; column < table.Columns.Count; column++)
                 {
                     if(table.Columns[column].ColumnName == columnName)
@@ -43,6 +48,20 @@ namespace AccountabilityAccounting
 
             comboBox.Items.AddRange(values.ToArray<string>());
             comboBox.SelectedIndex = 0;
+        }
+
+        public void SetUpFilters()
+        {
+            Table.DefaultView.RowFilter = string.Format("'sfdfsdf' is not null");
+            foreach(string key in Filters.Keys)
+            {
+                if(Filters[key].Text == "Все")
+                {
+                    Table.DefaultView.RowFilter += string.Format(" and [{0}] is not null ", key);
+                    continue;
+                }
+                Table.DefaultView.RowFilter += string.Format(" and [{0}] like '%{1}%' ", key, Filters[key].Text);
+            }
         }
     }
 }

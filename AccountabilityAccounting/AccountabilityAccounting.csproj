@@ -115,16 +115,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service References\DataProviderService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="EditRowMainTabForms\SignsForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EditRowMainTabForms\SignsForm.Designer.cs">
       <DependentUpon>SignsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\DataProviderService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
     <EmbeddedResource Include="AuthenticationForm.resx">

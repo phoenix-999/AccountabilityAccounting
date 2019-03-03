@@ -36,6 +36,11 @@
             this.lbSum = new System.Windows.Forms.Label();
             this.lbCount = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.cmbItems = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbProjects = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tbSendToDB = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -48,19 +53,19 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.cmbProjects = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.btnAcceptFilters = new System.Windows.Forms.Button();
+            this.cmbAccountables = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPageMain.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMainTab)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -71,7 +76,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1302, 727);
+            this.tabControl1.Size = new System.Drawing.Size(1284, 727);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPageMain
@@ -80,7 +85,7 @@
             this.tabPageMain.Location = new System.Drawing.Point(4, 22);
             this.tabPageMain.Name = "tabPageMain";
             this.tabPageMain.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageMain.Size = new System.Drawing.Size(1294, 701);
+            this.tabPageMain.Size = new System.Drawing.Size(1276, 701);
             this.tabPageMain.TabIndex = 0;
             this.tabPageMain.Text = "Главная";
             this.tabPageMain.UseVisualStyleBackColor = true;
@@ -101,7 +106,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1288, 695);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1270, 695);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // dataGridViewMainTab
@@ -115,7 +120,7 @@
             this.dataGridViewMainTab.Location = new System.Drawing.Point(6, 75);
             this.dataGridViewMainTab.Name = "dataGridViewMainTab";
             this.dataGridViewMainTab.ReadOnly = true;
-            this.dataGridViewMainTab.Size = new System.Drawing.Size(1276, 590);
+            this.dataGridViewMainTab.Size = new System.Drawing.Size(1258, 590);
             this.dataGridViewMainTab.TabIndex = 1;
             // 
             // panel1
@@ -125,7 +130,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(6, 674);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1276, 15);
+            this.panel1.Size = new System.Drawing.Size(1258, 15);
             this.panel1.TabIndex = 2;
             // 
             // lbSum
@@ -153,14 +158,68 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(6, 6);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1276, 60);
+            this.panel2.Size = new System.Drawing.Size(1258, 60);
             this.panel2.TabIndex = 3;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.label5);
+            this.groupBox4.Controls.Add(this.cmbAccountables);
+            this.groupBox4.Controls.Add(this.btnAcceptFilters);
+            this.groupBox4.Controls.Add(this.cmbItems);
+            this.groupBox4.Controls.Add(this.label4);
+            this.groupBox4.Controls.Add(this.label3);
+            this.groupBox4.Controls.Add(this.cmbProjects);
+            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox4.Location = new System.Drawing.Point(521, 0);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(562, 59);
+            this.groupBox4.TabIndex = 3;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Фильтры";
+            // 
+            // cmbItems
+            // 
+            this.cmbItems.FormattingEnabled = true;
+            this.cmbItems.Location = new System.Drawing.Point(72, 34);
+            this.cmbItems.Name = "cmbItems";
+            this.cmbItems.Size = new System.Drawing.Size(130, 23);
+            this.cmbItems.TabIndex = 3;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(7, 38);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(50, 15);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Статья";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(7, 13);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(59, 15);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Проекты";
+            // 
+            // cmbProjects
+            // 
+            this.cmbProjects.FormattingEnabled = true;
+            this.cmbProjects.Location = new System.Drawing.Point(72, 11);
+            this.cmbProjects.Name = "cmbProjects";
+            this.cmbProjects.Size = new System.Drawing.Size(130, 23);
+            this.cmbProjects.TabIndex = 0;
+            this.cmbProjects.Click += new System.EventHandler(this.filters_click);
             // 
             // groupBox3
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.tbSendToDB);
-            this.groupBox3.Location = new System.Drawing.Point(1107, 3);
+            this.groupBox3.Location = new System.Drawing.Point(1089, 3);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(157, 56);
             this.groupBox3.TabIndex = 2;
@@ -276,46 +335,45 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1294, 701);
+            this.tabPage2.Size = new System.Drawing.Size(1276, 701);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // groupBox4
+            // btnAcceptFilters
             // 
-            this.groupBox4.Controls.Add(this.label3);
-            this.groupBox4.Controls.Add(this.cmbProjects);
-            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox4.Location = new System.Drawing.Point(521, 0);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(287, 59);
-            this.groupBox4.TabIndex = 3;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Фильтры";
+            this.btnAcceptFilters.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnAcceptFilters.Location = new System.Drawing.Point(483, 11);
+            this.btnAcceptFilters.Name = "btnAcceptFilters";
+            this.btnAcceptFilters.Size = new System.Drawing.Size(73, 42);
+            this.btnAcceptFilters.TabIndex = 4;
+            this.btnAcceptFilters.Text = "Применить фильтры";
+            this.btnAcceptFilters.UseVisualStyleBackColor = true;
+            this.btnAcceptFilters.Click += new System.EventHandler(this.btnAcceptFilters_Click);
             // 
-            // cmbProjects
+            // cmbAccountables
             // 
-            this.cmbProjects.FormattingEnabled = true;
-            this.cmbProjects.Location = new System.Drawing.Point(102, 10);
-            this.cmbProjects.Name = "cmbProjects";
-            this.cmbProjects.Size = new System.Drawing.Size(179, 23);
-            this.cmbProjects.TabIndex = 0;
+            this.cmbAccountables.FormattingEnabled = true;
+            this.cmbAccountables.Location = new System.Drawing.Point(318, 10);
+            this.cmbAccountables.Name = "cmbAccountables";
+            this.cmbAccountables.Size = new System.Drawing.Size(159, 23);
+            this.cmbAccountables.TabIndex = 5;
             // 
-            // label3
+            // label5
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(7, 13);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 15);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Проекты";
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label5.Location = new System.Drawing.Point(221, 13);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(91, 15);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Подотчетники";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1302, 727);
+            this.ClientSize = new System.Drawing.Size(1284, 727);
             this.Controls.Add(this.tabControl1);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -329,12 +387,12 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -364,5 +422,10 @@
         private System.Windows.Forms.GroupBox groupBox4;
         internal System.Windows.Forms.ComboBox cmbProjects;
         private System.Windows.Forms.Label label3;
+        internal System.Windows.Forms.ComboBox cmbItems;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnAcceptFilters;
+        private System.Windows.Forms.Label label5;
+        internal System.Windows.Forms.ComboBox cmbAccountables;
     }
 }
