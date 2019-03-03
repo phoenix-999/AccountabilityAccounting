@@ -266,5 +266,63 @@ namespace AccountabilityAccountingDataAccess
 
             return command;
         }
+
+        public void UpdateItems(DataTable table, string userName)
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = DBAccess.AccountabilityAccountingConnectionString;
+
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            adapter.InsertCommand = CreateInsertCommndItems(conn, table, userName);
+            adapter.UpdateCommand = CreateUpdateCommndItems(conn, table, userName);
+            adapter.DeleteCommand = CreateDeleteCommndItems(conn, table, userName);
+
+            using (conn)
+            {
+                conn.Open();
+                adapter.Update(table);
+                table.AcceptChanges();
+            }
+        }
+
+        private SqlCommand CreateInsertCommndItems(SqlConnection conn, DataTable table, string userName)
+        {
+            SqlCommand command = new SqlCommand();
+            command.Connection = conn;
+            command.CommandType = CommandType.StoredProcedure;
+            command.CommandText = "insert_items";
+
+            command.Parameters.Add("@itemDescription", SqlDbType.NVarChar, 200, "Статья");
+
+            return command;
+        }
+
+        private SqlCommand CreateUpdateCommndItems(SqlConnection conn, DataTable table, string userName)
+        {
+            SqlCommand command = new SqlCommand();
+            command.Connection = conn;
+            command.CommandType = CommandType.StoredProcedure;
+            command.CommandText = "update_items";
+
+            SqlParameter newAccountable = command.Parameters.Add("@itemDescriptionNew", SqlDbType.NVarChar, 200, "Статья");
+            newAccountable.SourceVersion = DataRowVersion.Current;
+
+            SqlParameter oldAccountable = command.Parameters.Add("@itemDescriptionOld", SqlDbType.NVarChar, 200, "Статья");
+            oldAccountable.SourceVersion = DataRowVersion.Original;
+
+            return command;
+        }
+
+        private SqlCommand CreateDeleteCommndItems(SqlConnection conn, DataTable table, string userName)
+        {
+            SqlCommand command = new SqlCommand();
+            command.Connection = conn;
+            command.CommandType = CommandType.StoredProcedure;
+            command.CommandText = "delete_item";
+
+            command.Parameters.Add("@itemDescription", SqlDbType.NVarChar, 200, "Статья");
+
+            return command;
+        }
     }
 }

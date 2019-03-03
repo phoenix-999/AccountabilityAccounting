@@ -693,3 +693,297 @@ GO
 
 
 
+USE [AccountabilityAccounting]
+GO
+
+/****** Object:  StoredProcedure [dbo].[update_projects]    Script Date: 03.03.2019 14:48:33 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[update_projects]
+	@projectNameOld nvarchar(200),
+	@projectNameNew nvarchar(200)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	update
+		Projects
+	set
+		ProjectName = @projectNameNew
+	where
+		ProjectName = @projectNameOld
+END
+GO
+
+
+USE [AccountabilityAccounting]
+GO
+
+/****** Object:  StoredProcedure [dbo].[update_items]    Script Date: 03.03.2019 14:48:26 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[update_items]
+	-- Add the parameters for the stored procedure here
+	@itemDescriptionNew nvarchar(200),
+	@itemDescriptionOld nvarchar(200)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	update
+		Items
+	set
+		ItemDescription = @itemDescriptionNew
+	where
+		ItemDescription = @itemDescriptionOld
+END
+GO
+
+
+USE [AccountabilityAccounting]
+GO
+
+/****** Object:  StoredProcedure [dbo].[update_accountables]    Script Date: 03.03.2019 14:48:20 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[update_accountables]
+	-- Add the parameters for the stored procedure here
+	@accountableNameNew nvarchar(30),
+	@accountableNameOld nvarchar(30)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	update
+		Accountables
+	set
+		AccountableName = @accountableNameNew
+	where
+		AccountableName = @accountableNameOld
+END
+GO
+
+
+
+USE [AccountabilityAccounting]
+GO
+
+/****** Object:  StoredProcedure [dbo].[insert_projects]    Script Date: 03.03.2019 14:48:07 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[insert_projects]
+	-- Add the parameters for the stored procedure here
+	@projectName nvarchar(200)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	insert into Projects(ProjectName) values
+	(@projectName)
+END
+GO
+
+
+
+USE [AccountabilityAccounting]
+GO
+
+/****** Object:  StoredProcedure [dbo].[insert_items]    Script Date: 03.03.2019 14:48:04 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[insert_items] 
+	-- Add the parameters for the stored procedure here
+	@itemDescription nvarchar(200)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	insert into Items(ItemDescription) values
+	(@itemDescription)
+END
+GO
+
+
+USE [AccountabilityAccounting]
+GO
+
+/****** Object:  StoredProcedure [dbo].[insert_accountables]    Script Date: 03.03.2019 14:48:00 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[insert_accountables]
+	-- Add the parameters for the stored procedure here
+	@accountableName nvarchar(30)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here 
+	insert into Accountables (AccountableName) values
+	(@accountableName)
+END
+GO
+
+
+USE [AccountabilityAccounting]
+GO
+
+/****** Object:  StoredProcedure [dbo].[delete_project]    Script Date: 03.03.2019 14:47:48 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[delete_project]
+	-- Add the parameters for the stored procedure here
+	
+	@projectName nvarchar(200)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	delete top(1)
+	from Projects
+	where ProjectName = @projectName
+END
+GO
+
+
+USE [AccountabilityAccounting]
+GO
+
+/****** Object:  StoredProcedure [dbo].[delete_item]    Script Date: 03.03.2019 14:47:40 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[delete_item]
+	-- Add the parameters for the stored procedure here
+	@itemDescription nvarchar(200)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	delete top(1)
+	from
+		Items
+	where
+		ItemDescription = @itemDescription
+END
+GO
+
+
+USE [AccountabilityAccounting]
+GO
+
+/****** Object:  StoredProcedure [dbo].[delete_accountables]    Script Date: 03.03.2019 14:47:36 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[delete_accountables]
+	-- Add the parameters for the stored procedure here
+	@accountableName nvarchar(30)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	delete top(1)
+	from
+		Accountables
+	where
+		AccountableName = @accountableName
+END
+GO
+
+

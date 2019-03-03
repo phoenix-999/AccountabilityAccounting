@@ -10,6 +10,7 @@ namespace DataAccessService
     {
         UpdateSummary,
         UpdateAccountables,
-        UpdateProjects
+        UpdateProjects,
+        UpdateItems
     }
 }

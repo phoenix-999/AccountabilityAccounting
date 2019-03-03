@@ -29,6 +29,7 @@ namespace AccountabilityAccounting
         DataTable tableDataGridViewMainTab;
         DataTable tableDataGridViewAccountables;
         DataTable tableDataGridViewProjects;
+        DataTable tableDataGridViewItems;
         public MainForm()
         {
             InitializeComponent();
@@ -315,6 +316,40 @@ namespace AccountabilityAccounting
             tableDataGridViewProjects = dataProviderClient.GetData(new Selector() { SelectorOption = SelectorOptions.GetProjects }, (DataProviderService.User)AuthenticationService.User.Current);
             this.dataGridViewProjects.DataSource = tableDataGridViewProjects;
             this.dataGridViewProjects.Columns["Id"].Visible = false;
+        }
+
+        private void btnItemsRefresh_Click(object sender, EventArgs e)
+        {
+            if (tableDataGridViewItems != null)
+            {
+                try
+                {
+                    using (TransactionScope transaction = new TransactionScope())
+                    {
+                        dataProviderClient.UpdateData(new Updater() { UpdaterOption = UpdaterOptions.UpdateItems }, tableDataGridViewItems, (DataProviderService.User)AuthenticationService.User.Current);
+                        transaction.Complete();
+                        tableDataGridViewItems.AcceptChanges();
+                        MessageBox.Show("Изменения успешно применены");
+                    }
+                }
+                catch (FaultException<SecurityTokenException> ex)
+                {
+                    MessageBox.Show("Вход в программу не выполнен", "Ошибка входа", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+                catch (FaultException<DataProviderService.DbException> ex)
+                {
+                    MessageBox.Show("Ошибка в работе с базой данных. Обратитесть к администратору.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (CommunicationException ex)
+                {
+                    Log.Error("Detail: {1}", ex.ToString());
+                    MessageBox.Show("Ошибка обращения к серверу. Обратитесь к администартору", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            tableDataGridViewItems = dataProviderClient.GetData(new Selector() { SelectorOption = SelectorOptions.GetItems }, (DataProviderService.User)AuthenticationService.User.Current);
+            this.dataGridViewItems.DataSource = tableDataGridViewItems;
+            this.dataGridViewItems.Columns["Id"].Visible = false;
         }
     }
 }

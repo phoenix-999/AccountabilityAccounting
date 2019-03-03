@@ -257,6 +257,9 @@ namespace AccountabilityAccounting.DataProviderService {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         UpdateProjects = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        UpdateItems = 3,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]

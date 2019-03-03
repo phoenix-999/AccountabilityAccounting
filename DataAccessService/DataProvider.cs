@@ -111,6 +111,10 @@ namespace DataAccessService
             {
                 update.UpdateProjects(table, user.UserName);
             }
+            else if (updater.UpdaterOption == UpdaterOptions.UpdateItems)
+            {
+                update.UpdateItems(table, user.UserName);
+            }
         }
     }
 }

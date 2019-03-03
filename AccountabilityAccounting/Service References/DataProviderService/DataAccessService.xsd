@@ -29,6 +29,7 @@
       <xs:enumeration value="UpdateSummary" />
       <xs:enumeration value="UpdateAccountables" />
       <xs:enumeration value="UpdateProjects" />
+      <xs:enumeration value="UpdateItems" />
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="UpdaterOptions" nillable="true" type="tns:UpdaterOptions" />
