@@ -47,7 +47,7 @@ namespace AccountabilityAccounting
             }
 
             comboBox.Items.AddRange(values.ToArray<string>());
-            comboBox.SelectedIndex = 0;
+            //comboBox.SelectedIndex = 0;
         }
 
         public void SetUpFilters()
@@ -55,12 +55,12 @@ namespace AccountabilityAccounting
             Table.DefaultView.RowFilter = string.Format("'sfdfsdf' is not null");
             foreach(string key in Filters.Keys)
             {
-                if(Filters[key].Text == "Все")
+                if(Filters[key].Text == "Все" || Filters[key].Text == string.Empty)
                 {
-                    Table.DefaultView.RowFilter += string.Format(" and [{0}] is not null ", key);
+                    Table.DefaultView.RowFilter += string.Format(" and ([{0}] is not null or [{0}] is null) ", key);
                     continue;
                 }
-                Table.DefaultView.RowFilter += string.Format(" and [{0}] like '%{1}%' ", key, Filters[key].Text);
+                Table.DefaultView.RowFilter += string.Format(" and [{0}] like '{1}' ", key, Filters[key].Text);
             }
         }
     }
