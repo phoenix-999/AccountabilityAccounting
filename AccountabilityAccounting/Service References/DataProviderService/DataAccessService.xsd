@@ -27,6 +27,8 @@
   <xs:simpleType name="UpdaterOptions">
     <xs:restriction base="xs:string">
       <xs:enumeration value="UpdateSummary" />
+      <xs:enumeration value="UpdateAccountables" />
+      <xs:enumeration value="UpdateProjects" />
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="UpdaterOptions" nillable="true" type="tns:UpdaterOptions" />

@@ -103,6 +103,14 @@ namespace DataAccessService
                 update.UpdateSummary(table, user.UserName);
 
             }
+            else if(updater.UpdaterOption == UpdaterOptions.UpdateAccountables)
+            {
+                update.UpdateAccountables(table, user.UserName);
+            }
+            else if(updater.UpdaterOption == UpdaterOptions.UpdateProjects)
+            {
+                update.UpdateProjects(table, user.UserName);
+            }
         }
     }
 }

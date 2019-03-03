@@ -27,11 +27,15 @@ namespace AccountabilityAccounting
         FiltersMainForm Filters;
 
         DataTable tableDataGridViewMainTab;
+        DataTable tableDataGridViewAccountables;
+        DataTable tableDataGridViewProjects;
         public MainForm()
         {
             InitializeComponent();
 
             this.FormClosed += (ob, e)=>{ Application.Exit(); };
+
+            dataProviderClient = new DataProviderClient();
 
         }
 
@@ -42,7 +46,7 @@ namespace AccountabilityAccounting
 
         private void btnMainTabGetData_Click(object sender, EventArgs e)
         {
-            dataProviderClient = new DataProviderClient();
+            
 
             DataProviderService.Selector selector = new Selector();
             selector.SelectorOption = SelectorOptions.GetSummary;
@@ -66,6 +70,8 @@ namespace AccountabilityAccounting
                 this.btnNewString.Click += new System.EventHandler(this.btnNewString_Click);
 
                 this.btnDeleteString.Click += new System.EventHandler(this.btnDeleteString_Click);
+
+                
 
                 CreateFilters();
             }
@@ -241,6 +247,28 @@ namespace AccountabilityAccounting
 
                 Filters.SetUpFilters();
 
+        }
+
+        private void btnAccountablesRefresh_Click(object sender, EventArgs e)
+        {
+            if(tableDataGridViewAccountables != null)
+            {
+                dataProviderClient.UpdateData(new Updater() { UpdaterOption = UpdaterOptions.UpdateAccountables}, tableDataGridViewAccountables, (DataProviderService.User)AuthenticationService.User.Current);
+            }
+            tableDataGridViewAccountables = dataProviderClient.GetData(new Selector() { SelectorOption = SelectorOptions.GetAccountables}, (DataProviderService.User)AuthenticationService.User.Current);
+            this.dataGridViewAccountables.DataSource = tableDataGridViewAccountables;
+            this.dataGridViewAccountables.Columns["Id"].Visible = false;
+        }
+
+        private void btnProjectsRefresh_Click(object sender, EventArgs e)
+        {
+            if (tableDataGridViewProjects != null)
+            {
+                dataProviderClient.UpdateData(new Updater() { UpdaterOption = UpdaterOptions.UpdateProjects }, tableDataGridViewProjects, (DataProviderService.User)AuthenticationService.User.Current);
+            }
+            tableDataGridViewProjects = dataProviderClient.GetData(new Selector() { SelectorOption = SelectorOptions.GetProjects }, (DataProviderService.User)AuthenticationService.User.Current);
+            this.dataGridViewProjects.DataSource = tableDataGridViewProjects;
+            this.dataGridViewProjects.Columns["Id"].Visible = false;
         }
     }
 }

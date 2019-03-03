@@ -8,6 +8,8 @@ namespace DataAccessService
 {
     public enum UpdaterOptions
     {
-        UpdateSummary
+        UpdateSummary,
+        UpdateAccountables,
+        UpdateProjects
     }
 }

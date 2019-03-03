@@ -150,5 +150,121 @@ namespace AccountabilityAccountingDataAccess
             return command;
         }
 
+        public void UpdateAccountables(DataTable table, string userName)
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = DBAccess.AccountabilityAccountingConnectionString;
+
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            adapter.InsertCommand = CreateInsertCommndAccountables(conn, table, userName);
+            adapter.UpdateCommand = CreateUpdateCommndAccountables(conn, table, userName);
+            adapter.DeleteCommand = CreateDeleteCommndAccountables(conn, table, userName);
+
+            using (conn)
+            {
+                conn.Open();
+                adapter.Update(table);
+                table.AcceptChanges();
+            }
+        }
+
+        private SqlCommand CreateInsertCommndAccountables(SqlConnection conn, DataTable table, string userName)
+        {
+            SqlCommand command = new SqlCommand();
+            command.Connection = conn;
+            command.CommandType = CommandType.StoredProcedure;
+            command.CommandText = "insert_accountables";
+
+            command.Parameters.Add("@accountableName", SqlDbType.NVarChar, 30, "Подотчетник");
+
+            return command;
+        }
+
+        private SqlCommand CreateUpdateCommndAccountables(SqlConnection conn, DataTable table, string userName)
+        {
+            SqlCommand command = new SqlCommand();
+            command.Connection = conn;
+            command.CommandType = CommandType.StoredProcedure;
+            command.CommandText = "update_accountables";
+
+            SqlParameter newAccountable = command.Parameters.Add("@accountableNameNew", SqlDbType.NVarChar, 30, "Подотчетник");
+            newAccountable.SourceVersion = DataRowVersion.Current;
+
+            SqlParameter oldAccountable = command.Parameters.Add("@accountableNameOld", SqlDbType.NVarChar, 30, "Подотчетник");
+            oldAccountable.SourceVersion = DataRowVersion.Original;
+
+            return command;
+        }
+
+        private SqlCommand CreateDeleteCommndAccountables(SqlConnection conn, DataTable table, string userName)
+        {
+            SqlCommand command = new SqlCommand();
+            command.Connection = conn;
+            command.CommandType = CommandType.StoredProcedure;
+            command.CommandText = "delete_accountables";
+
+            command.Parameters.Add("@accountableName", SqlDbType.NVarChar, 30, "Подотчетник");
+
+            return command;
+        }
+
+
+        public void UpdateProjects(DataTable table, string userName)
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = DBAccess.AccountabilityAccountingConnectionString;
+
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            adapter.InsertCommand = CreateInsertCommndProjects(conn, table, userName);
+            adapter.UpdateCommand = CreateUpdateCommndProjects(conn, table, userName);
+            adapter.DeleteCommand = CreateDeleteCommndProjects(conn, table, userName);
+
+            using (conn)
+            {
+                conn.Open();
+                adapter.Update(table);
+                table.AcceptChanges();
+            }
+        }
+
+        private SqlCommand CreateInsertCommndProjects(SqlConnection conn, DataTable table, string userName)
+        {
+            SqlCommand command = new SqlCommand();
+            command.Connection = conn;
+            command.CommandType = CommandType.StoredProcedure;
+            command.CommandText = "insert_projects";
+
+            command.Parameters.Add("@projectName", SqlDbType.NVarChar, 200, "Проект");
+
+            return command;
+        }
+
+        private SqlCommand CreateUpdateCommndProjects(SqlConnection conn, DataTable table, string userName)
+        {
+            SqlCommand command = new SqlCommand();
+            command.Connection = conn;
+            command.CommandType = CommandType.StoredProcedure;
+            command.CommandText = "update_projects";
+
+            SqlParameter newAccountable = command.Parameters.Add("@projectNameNew", SqlDbType.NVarChar, 200, "Проект");
+            newAccountable.SourceVersion = DataRowVersion.Current;
+
+            SqlParameter oldAccountable = command.Parameters.Add("@projectNameOld", SqlDbType.NVarChar, 200, "Проект");
+            oldAccountable.SourceVersion = DataRowVersion.Original;
+
+            return command;
+        }
+
+        private SqlCommand CreateDeleteCommndProjects(SqlConnection conn, DataTable table, string userName)
+        {
+            SqlCommand command = new SqlCommand();
+            command.Connection = conn;
+            command.CommandType = CommandType.StoredProcedure;
+            command.CommandText = "delete_project";
+
+            command.Parameters.Add("@projectName", SqlDbType.NVarChar, 200, "Проект");
+
+            return command;
+        }
     }
 }
