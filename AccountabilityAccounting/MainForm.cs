@@ -253,7 +253,30 @@ namespace AccountabilityAccounting
         {
             if(tableDataGridViewAccountables != null)
             {
-                dataProviderClient.UpdateData(new Updater() { UpdaterOption = UpdaterOptions.UpdateAccountables}, tableDataGridViewAccountables, (DataProviderService.User)AuthenticationService.User.Current);
+                try
+                {
+                    using (TransactionScope transaction = new TransactionScope())
+                    {
+                        dataProviderClient.UpdateData(new Updater() { UpdaterOption = UpdaterOptions.UpdateAccountables }, tableDataGridViewAccountables, (DataProviderService.User)AuthenticationService.User.Current);
+                        transaction.Complete();
+                        tableDataGridViewAccountables.AcceptChanges();
+                        MessageBox.Show("Изменения успешно применены");
+                    }
+                }
+                catch (FaultException<SecurityTokenException> ex)
+                {
+                    MessageBox.Show("Вход в программу не выполнен", "Ошибка входа", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+                catch (FaultException<DataProviderService.DbException> ex)
+                {
+                    MessageBox.Show("Ошибка в работе с базой данных. Обратитесть к администратору.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (CommunicationException ex)
+                {
+                    Log.Error("Detail: {1}", ex.ToString());
+                    MessageBox.Show("Ошибка обращения к серверу. Обратитесь к администартору", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             tableDataGridViewAccountables = dataProviderClient.GetData(new Selector() { SelectorOption = SelectorOptions.GetAccountables}, (DataProviderService.User)AuthenticationService.User.Current);
             this.dataGridViewAccountables.DataSource = tableDataGridViewAccountables;
@@ -264,7 +287,30 @@ namespace AccountabilityAccounting
         {
             if (tableDataGridViewProjects != null)
             {
-                dataProviderClient.UpdateData(new Updater() { UpdaterOption = UpdaterOptions.UpdateProjects }, tableDataGridViewProjects, (DataProviderService.User)AuthenticationService.User.Current);
+                try
+                {
+                    using (TransactionScope transaction = new TransactionScope())
+                    {
+                        dataProviderClient.UpdateData(new Updater() { UpdaterOption = UpdaterOptions.UpdateProjects }, tableDataGridViewProjects, (DataProviderService.User)AuthenticationService.User.Current);
+                        transaction.Complete();
+                        tableDataGridViewProjects.AcceptChanges();
+                        MessageBox.Show("Изменения успешно применены");
+                    }
+                }
+                catch (FaultException<SecurityTokenException> ex)
+                {
+                    MessageBox.Show("Вход в программу не выполнен", "Ошибка входа", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+                catch (FaultException<DataProviderService.DbException> ex)
+                {
+                    MessageBox.Show("Ошибка в работе с базой данных. Обратитесть к администратору.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (CommunicationException ex)
+                {
+                    Log.Error("Detail: {1}", ex.ToString());
+                    MessageBox.Show("Ошибка обращения к серверу. Обратитесь к администартору", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             tableDataGridViewProjects = dataProviderClient.GetData(new Selector() { SelectorOption = SelectorOptions.GetProjects }, (DataProviderService.User)AuthenticationService.User.Current);
             this.dataGridViewProjects.DataSource = tableDataGridViewProjects;
