@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.421
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountabilityAccounting", "AccountabilityAccounting\AccountabilityAccounting.csproj", "{765FE85C-A4B6-475B-B525-B499567461B8}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -14,6 +14,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountabilityAccountingDataAccess", "AccountabilityAccountingDataAccess\AccountabilityAccountingDataAccess.csproj", "{F24CBDB9-89D6-43DF-9EE2-835B27423368}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessService", "DataAccessService\DataAccessService.csproj", "{1C582E71-5E96-44E2-9BDA-A847F402E2C0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F0D7E412-BECB-4F6D-BBFA-60529EAADF12}"
+	ProjectSection(SolutionItems) = preProject
+		README.txt = README.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
