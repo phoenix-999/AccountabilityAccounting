@@ -102,7 +102,7 @@ namespace AccountabilityAccounting
 
         private void DataGridViewMainTab_SelectionChanged(object sender, EventArgs e)
         {
-            lbCount.Text = string.Format("Колиество: {0}", dataGridViewMainTab.SelectedCells.Count);
+            lbCount.Text = string.Format("Количество: {0}", dataGridViewMainTab.SelectedCells.Count);
             if(dataGridViewMainTab.SelectedCells.Count <= 1)
             {
                 lbCount.Text = string.Empty;
